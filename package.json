@@ -4,6 +4,7 @@
   "description": "A visual artist's portfolio website",
   "main": "index.js",
   "scripts": {
+	"start": "lite-server -c config/bs-config.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -11,8 +12,8 @@
     "url": "git+https://github.com/nickboon/portfolio.git"
   },
   "engine": {
-	"node": "~5.0.0",
-	"npm": "~3.3.6"
+    "node": "~5.0.0",
+    "npm": "~3.3.6"
   },
   "keywords": [
     "portfolio"
@@ -22,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/nickboon/portfolio/issues"
   },
-  "homepage": "https://github.com/nickboon/portfolio#readme"
+  "homepage": "https://github.com/nickboon/portfolio#readme",
+  "devDependencies": {
+    "lite-server": "^2.2.2"
+  }
 }

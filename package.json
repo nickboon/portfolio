@@ -4,8 +4,14 @@
   "description": "A visual artist's portfolio website",
   "main": "index.js",
   "scripts": {
-	"start": "lite-server -c config/bs-config.json",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "lite-server -c config/bs-config.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:json:src": "jsonlint ./json/src.json -q",
+    "lint": "jshint ./*.js ./json/**/*.json",
+    "build:json": "node ./buildJson.js ./json/src.json ./json/built/index.json",
+	"build:json:clean": "rimraf ./json/built/index.json",
+    "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
+    "postbuild:json": "jsonlint ./json/built/index.json -q"
   },
   "repository": {
     "type": "git",
@@ -25,6 +31,8 @@
   },
   "homepage": "https://github.com/nickboon/portfolio#readme",
   "devDependencies": {
-    "lite-server": "^2.2.2"
+    "jshint": "^2.9.4",
+    "lite-server": "^2.2.2",
+    "rimraf": "^2.5.4"
   }
 }

@@ -9,7 +9,7 @@
     "lint:json:src": "jsonlint ./json/src.json -q",
     "lint": "jshint ./*.js ./json/**/*.json",
     "build:json": "node ./buildJson.js ./json/src.json ./json/built/index.json",
-	"build:json:clean": "rimraf ./json/built/index.json",
+    "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
     "postbuild:json": "jsonlint ./json/built/index.json -q"
   },
@@ -32,6 +32,7 @@
   "homepage": "https://github.com/nickboon/portfolio#readme",
   "devDependencies": {
     "jshint": "^2.9.4",
+    "jsonlint": "^1.6.2",
     "lite-server": "^2.2.2",
     "rimraf": "^2.5.4"
   }

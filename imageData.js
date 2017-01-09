@@ -1,6 +1,8 @@
 function captionFrom(data) {
+	if (!data || typeof data === 'string') throw 'No data supplied';
 	var info = [
-		(data.collection ? data.collection + ' ' : '') + 
+		(data.imageSet ? data.imageSet : '') +
+		(data.imageSet && data.title ? ' ' : '') + 
 		(data.title ? '<em>' + data.title + '</em>' : ''), 
 		data.medium,
 		data.dimensions, 
@@ -17,6 +19,7 @@ function captionFrom(data) {
 }
 
 function assembleFrom(data, imageSet) {
+	if (!data || typeof data === 'string') throw 'No data supplied';
 	if (imageSet) data.imageSet = imageSet;
 	data.caption = captionFrom(data);
 	return data;	

@@ -19,9 +19,10 @@ function captionFrom(data) {
 }
 
 function assembleFrom(data, imageSet) {
+	var _ = require('underscore');
 	if (!data || typeof data === 'string') throw 'No data supplied';
-	if (imageSet) data.imageSet = imageSet;
-	data.caption = captionFrom(data);
+    if (imageSet) data.imageSet = imageSet;
+	if (!_.isEmpty(data)) data.caption = captionFrom(data);
 	return data;	
 }
 

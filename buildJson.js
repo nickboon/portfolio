@@ -11,4 +11,4 @@ function write(path, content) {
 	fs.writeFileSync(path, content, {encoding:'utf8'});	
 }
 
-write(outPath, JSON.stringify(collection.assembleFrom(src, assembler)));
+write(outPath, JSON.stringify(collection.assembledFrom(src, assembler)));

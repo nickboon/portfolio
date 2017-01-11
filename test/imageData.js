@@ -7,14 +7,13 @@ function imageAssembledFrom(knownData) {
 		return knownData;
 } 
 
-describe('imageData.js', function() {
+describe('imageData', function() {
 
 	describe('.captionFrom(data)', function() {
-		it('should throw with no object passed in.', function() {
-			function testNoArg() {
+		it('should throw with no argument supplied.', function() {						
+			assert.throws(function () {
 				image.captionFrom();
-			};			
-			assert.throws(testNoArg);			
+			});			
 		});
 		
 		it('should return a correctly formatted caption.', function() {
@@ -58,36 +57,33 @@ describe('imageData.js', function() {
 		});
 	});
 
-	describe('assembleFrom(data, imageSet)', function() {
-		it('should throw with no object passed in.', function() {
-			function testNoArg() {
-				image.assembleFrom();
-			};			
-
-			assert.throws(testNoArg);			
+	describe('.assembledFrom(data, imageSet)', function() {
+		it('should throw with no argument supplied.', function() {						
+			assert.throws(function () {
+				image.assembledFrom();
+			});			
 			
-			function testStringArg() {
-				image.assembleFrom("boo");
-			};			
-			assert.throws(testStringArg);
+			assert.throws(function () {
+				image.assembledFrom("boo");
+			});
 		});
 			
 		it('should pass back an empty object.', function() {			
 			var expected = {};
-			var actual = image.assembleFrom(expected);
+			var actual = image.assembledFrom(expected);
 			assert.equal(actual, expected);			
 			
 		});
 
-		it('should return a correctly assembled object.', function() {			
+		it('should return a correctly assembled image object.', function() {			
 			var knownImage = {author: 'me'};
 			var expected = imageAssembledFrom(knownImage);
-			var actual = image.assembleFrom(knownImage);
+			var actual = image.assembledFrom(knownImage);
 			should(actual).eql(expected);
 		
 			var knownSet = 'My Holidays';
 			var expected = imageAssembledFrom({author:'me', imageSet: knownSet});
-			var actual = image.assembleFrom(knownImage, knownSet);
+			var actual = image.assembledFrom(knownImage, knownSet);
 			should(actual).eql(expected);
 		});
 	});

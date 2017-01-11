@@ -1,6 +1,7 @@
 var assembler;
 
-function assembleFrom(data, a) {
+function assembledFrom(data, a) {
+		if (!data) throw 'No collection data to assemble.';
 		if (a) assembler = a;
 		if (!assembler) throw 'No data assembler set.';		
 		if (data.collections) 
@@ -10,13 +11,13 @@ function assembleFrom(data, a) {
 		return data;  		
 }
 
-function fetchFrom(url) {
+function fetchedFrom(url) {
 		var data = require(url);
-		return assembleFrom(data);
+		return assembledFrom(data);
 }	
 
 module.exports = {
-	assembleFrom: assembleFrom,
-	fetchFrom: fetchFrom
+	assembledFrom: assembledFrom,
+	fetchedFrom: fetchedFrom
 };
 

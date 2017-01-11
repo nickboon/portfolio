@@ -1,5 +1,5 @@
-var imageData = require('./imageData.js');
-var collectionData = require('./collectionData.js');
+var image = require('./imageData.js');
+var collection = require('./collectionData.js');
 var pathSeperator = require('path').sep;
 var root = '.' + pathSeperator;
 
@@ -11,13 +11,13 @@ module.exports = {
 		
 	fetchImageSetFor: function (collection, urls) {
 		return urls.map(function (url) {
-			return imageData.fetchFrom(root + url, collection);
+			return image.fetchedFrom(root + url, collection);
 		});
 	},
 
 	fetchCollectionSet: function (urls) {
 		return urls.map(function (url) {
-			return collectionData.fetchFrom(root + url);
+			return collection.fetchedFrom(root + url);
 		});	
 	}	
 };

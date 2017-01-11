@@ -1,5 +1,5 @@
 function captionFrom(data) {
-	if (!data || typeof data === 'string') throw 'No data supplied';
+	if (!data || typeof data === 'string') throw 'No image data to caption.';
 	var info = [
 		(data.imageSet ? data.imageSet : '') +
 		(data.imageSet && data.title ? ' ' : '') + 
@@ -18,9 +18,9 @@ function captionFrom(data) {
 	else return joined[0].toUpperCase() + joined.slice(1) + '.';	
 }
 
-function assembleFrom(data, imageSet) {
+function assembledFrom(data, imageSet) {
 	var _ = require('underscore');
-	if (!data || typeof data === 'string') throw 'No data supplied';
+	if (!data || typeof data === 'string') throw 'No image data to assemble.';
     if (imageSet) data.imageSet = imageSet;
 	if (!_.isEmpty(data)) data.caption = captionFrom(data);
 	return data;	
@@ -28,10 +28,10 @@ function assembleFrom(data, imageSet) {
 
 module.exports = {
 	captionFrom: captionFrom,
-	assembleFrom: assembleFrom,
+	assembledFrom: assembledFrom,
 
-	fetchFrom: function (url, imageSet) {
+	fetchedFrom: function (url, imageSet) {
 		var data = require(url);	
-		return assembleFrom(data, imageSet);
+		return assembledFrom(data, imageSet);
 	}
 };

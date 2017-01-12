@@ -28,7 +28,7 @@ var assembledValidCollection = {
 	info: 'Some info about this collection',
 	images: [image],
 	collections: [validSubCollection]	
-}
+};
 
 describe('collectionData', function() {
 	describe('.assembledFrom(data, assembler)', function() {
@@ -61,11 +61,6 @@ describe('collectionData', function() {
 			var expected = assembledValidCollection;
 			var actual = collection.assembledFrom(validCollection, mockAssembler);
 			should(actual).eql(expected);
-		
-			//~ var knownSet = 'My Holidays';
-			//~ var expected = imageAssembledFrom({author:'me', imageSet: knownSet});
-			//~ var actual = image.assembleFrom(knownImage, knownSet);
-			//~ should(actual).eql(expected);
 		});
 	});
 });

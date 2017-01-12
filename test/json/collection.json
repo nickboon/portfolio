@@ -1,0 +1,11 @@
+{
+	"title": "Collection 1",
+	"images": [
+		"./image.json"
+	],
+	"info": "Info about Collection 1",
+	"collections": [
+		"subcollection.json",
+		"subcollection2.json"		
+	]
+}

@@ -1,0 +1,42 @@
+{
+	"title": "Collection 1",
+	"images": [
+		{
+			"title": "Image 1",
+			"author": "Nick Boon",
+			"caption": "Collection 1 <em>Image 1</em>, Nick Boon.",
+			"imageSet": "Collection 1"
+		}
+	],
+	"info": "Info about Collection 1",
+	"collections": [
+		{
+			"title": "Collection 2",
+			"images": [],
+			"collections": [
+				{
+					"title": "Collection 4",
+					"images": [
+						{
+							"title": "Image 1",
+							"author": "Nick Boon",
+							"caption": "Collection 4 <em>Image 1</em>, Nick Boon.",
+							"imageSet": "Collection 4"
+						}
+					],
+					"info": "Info about Collection 4",
+					"collections": []
+				}
+			]
+		},
+		{
+			"images": [
+				{
+					"title": "Image 1",
+					"author": "Nick Boon",
+					"caption": "<em>Image 1</em>, Nick Boon."
+				}
+			]
+		}		
+	]
+}

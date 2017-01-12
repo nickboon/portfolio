@@ -1,6 +1,6 @@
 var assert = require('assert');
 var should = require('should');
-var image = require('../imageData.js')
+var image = require('../imageData.js');
 
 function imageAssembledFrom(knownData) {
 		knownData.caption = image.captionFrom(knownData);
@@ -21,36 +21,36 @@ describe('imageData', function() {
 			var actual = image.captionFrom({});			
 			assert.equal(actual, expected);			
 
-			var expected = '2003.';
-			var actual = image.captionFrom({
+			expected = '2003.';
+			actual = image.captionFrom({
 				date: '2003'
 			});			
 			assert.equal(actual, expected);			
 
-			var expected = '<em>Working Title</em>, 2003.';
-			var actual = image.captionFrom({
+			expected = '<em>Working Title</em>, 2003.';
+			actual = image.captionFrom({
 				date: '2003',
 				title: 'Working Title'
 			});		
 			assert.equal(actual, expected);			
 
-			var expected = 'My Holidays <em>Working Title</em>, 2003.';
-			var actual = image.captionFrom({
+			expected = 'My Holidays <em>Working Title</em>, 2003.';
+			actual = image.captionFrom({
 				date: '2003',
 				title: 'Working Title',
 				imageSet: 'My Holidays'
 			});		
 			assert.equal(actual, expected);			
 
-			var expected = 'My Holidays, w/p.';
-			var actual = image.captionFrom({
+			expected = 'My Holidays, w/p.';
+			actual = image.captionFrom({
 				edition: 'w/p',
 				imageSet: 'My Holidays'
 			});		
 			assert.equal(actual, expected);			
 
-			var expected = 'My Holidays.';
-			var actual = image.captionFrom({
+			expected = 'My Holidays.';
+			actual = image.captionFrom({
 				imageSet: 'My Holidays'
 			});		
 			assert.equal(actual, expected);			
@@ -71,19 +71,19 @@ describe('imageData', function() {
 		it('should pass back an empty object.', function() {			
 			var expected = {};
 			var actual = image.assembledFrom(expected);
-			assert.equal(actual, expected);			
-			
+			assert.equal(actual, expected);						
 		});
 
 		it('should return a correctly assembled image object.', function() {			
 			var knownImage = {author: 'me'};
 			var expected = imageAssembledFrom(knownImage);
 			var actual = image.assembledFrom(knownImage);
+			var knownSet = 'My Holidays';
+
 			should(actual).eql(expected);
 		
-			var knownSet = 'My Holidays';
-			var expected = imageAssembledFrom({author:'me', imageSet: knownSet});
-			var actual = image.assembledFrom(knownImage, knownSet);
+			expected = imageAssembledFrom({author:'me', imageSet: knownSet});
+			actual = image.assembledFrom(knownImage, knownSet);
 			should(actual).eql(expected);
 		});
 	});

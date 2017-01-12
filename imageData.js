@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 function captionFrom(data) {
 	if (!data || typeof data === 'string') throw 'No image data to caption.';
 	var info = [
@@ -19,7 +21,6 @@ function captionFrom(data) {
 }
 
 function assembledFrom(data, imageSet) {
-	var _ = require('underscore');
 	if (!data || typeof data === 'string') throw 'No image data to assemble.';
     if (imageSet) data.imageSet = imageSet;
 	if (!_.isEmpty(data)) data.caption = captionFrom(data);
@@ -31,7 +32,7 @@ module.exports = {
 	assembledFrom: assembledFrom,
 
 	fetchedFrom: function (url, imageSet) {
-		var data = require(url);	
+		var data = _.clone(require(url));	
 		return assembledFrom(data, imageSet);
 	}
 };

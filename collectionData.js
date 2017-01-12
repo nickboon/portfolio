@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var assembler;
 
 function assembledFrom(data, a) {
@@ -12,7 +13,7 @@ function assembledFrom(data, a) {
 }
 
 function fetchedFrom(url) {
-		var data = require(url);
+		var data = _.clone(require(url));
 		return assembledFrom(data);
 }	
 

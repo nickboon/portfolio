@@ -1,24 +1,23 @@
-var _ = require('underscore');
-var assembler;
+var fetcher;
+var ofImages = require('./imageData.js');
 
-function assembledFrom(data, a) {
-		if (!data) throw 'No collection data to assemble.';
-		if (a) assembler = a;
-		if (!assembler) throw 'No data assembler set.';		
-		if (data.collections) 
-			data.collections = assembler.fetchCollectionSet(data.collections);
-		if (data.images)
-			data.images = assembler.fetchImageSetFor(data.title, data.images);
-		return data;  		
+function assembled(data, owner) {
+	if (!data || typeof data === 'string') throw 'No colection data to assemble.';
+	if (data.collections)
+		data.collections = fetcher
+			.fetchedList(this, null, data.collections);
+	if (data.images)
+		data.images = fetcher
+			.fetchedList(ofImages, data.title, data.images);
+	return data;  		
 }
 
-function fetchedFrom(url) {
-		var data = _.clone(require(url));
-		return assembledFrom(data);
-}	
-
 module.exports = {
-	assembledFrom: assembledFrom,
-	fetchedFrom: fetchedFrom
+	setFetcher: function (f) {
+		if (f) fetcher = f;
+		return this;
+	},
+		
+	assembled: assembled
 };
 

@@ -1,14 +1,9 @@
 var assert = require('assert');
 var should = require('should');
-var image = require('../imageData.js');
-
-function imageAssembledFrom(knownData) {
-		knownData.caption = image.captionFrom(knownData);
-		return knownData;
-} 
 
 describe('imageData', function() {
-
+	var image = require('../imageData.js');
+	
 	describe('.captionFrom(data)', function() {
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
@@ -56,34 +51,39 @@ describe('imageData', function() {
 			assert.equal(actual, expected);			
 		});
 	});
+	describe('.assembled(data, owner)', function() {
+		var imageAssembled = function (knownData) {
+			knownData.caption = image.captionFrom(knownData);
+			return knownData;
+		}; 
 
-	describe('.assembledFrom(data, imageSet)', function() {
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
-				image.assembledFrom();
+				image.assembled();
 			});			
 			
 			assert.throws(function () {
-				image.assembledFrom("boo");
+				image.assembled("boo");
 			});
-		});
-			
+		});			
 		it('should pass back an empty object.', function() {			
 			var expected = {};
-			var actual = image.assembledFrom(expected);
+			var actual = image.assembled(expected);
 			assert.equal(actual, expected);						
 		});
-
 		it('should return a correctly assembled image object.', function() {			
 			var knownImage = {author: 'me'};
-			var expected = imageAssembledFrom(knownImage);
-			var actual = image.assembledFrom(knownImage);
-			var knownSet = 'My Holidays';
+			var expected = imageAssembled(knownImage);
+			var actual = image.assembled(knownImage);
 
 			should(actual).eql(expected);
+		});
+		it('should return an image object with an image set if owner suplied.', function() {			
+			var owningColection = 'My Holidays';
+			var knownImage = {author: 'me'};
 		
-			expected = imageAssembledFrom({author:'me', imageSet: knownSet});
-			actual = image.assembledFrom(knownImage, knownSet);
+			expected = imageAssembled({author:'me', imageSet: owningColection});
+			actual = image.assembled(knownImage, owningColection);
 			should(actual).eql(expected);
 		});
 	});

@@ -20,19 +20,14 @@ function captionFrom(data) {
 	else return joined[0].toUpperCase() + joined.slice(1) + '.';	
 }
 
-function assembledFrom(data, imageSet) {
+function assembled(data, owner) {
 	if (!data || typeof data === 'string') throw 'No image data to assemble.';
-    if (imageSet) data.imageSet = imageSet;
+    if (owner) data.imageSet = owner;
 	if (!_.isEmpty(data)) data.caption = captionFrom(data);
 	return data;	
 }
 
 module.exports = {
 	captionFrom: captionFrom,
-	assembledFrom: assembledFrom,
-
-	fetchedFrom: function (url, imageSet) {
-		var data = _.clone(require(url));	
-		return assembledFrom(data, imageSet);
-	}
+	assembled: assembled
 };

@@ -16,14 +16,7 @@
 			"collections": [
 				{
 					"title": "Collection 4",
-					"images": [
-						{
-							"title": "Image 1",
-							"author": "Nick Boon",
-							"caption": "Collection 4 <em>Image 1</em>, Nick Boon.",
-							"imageSet": "Collection 4"
-						}
-					],
+					"images": [],
 					"info": "Info about Collection 4",
 					"collections": []
 				}

@@ -12,7 +12,9 @@
     "build:json": "node ./buildJson.js ./json/src.json ./json/built/index.json",
     "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
-    "postbuild:json": "jsonlint ./json/built/index.json -q"
+    "postbuild:json": "jsonlint ./json/built/index.json -q",
+    "build:html": "mustache json/built/index.json html/index.mustache > dist/index.html",
+    "build": "npm run build:json && npm run build:html"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "jsonlint": "^1.6.2",
     "lite-server": "^2.2.2",
     "mocha": "^3.2.0",
+    "mustache": "^2.3.0",
     "rimraf": "^2.5.4",
     "should": "^11.1.2"
   }

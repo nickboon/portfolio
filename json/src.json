@@ -1,4 +1,5 @@
 {
+	"title": "Nick Boon",
 	"images": [
 		"photo/outOfPrint.json",
 		"etching/selfPortraitInCloud.json",
@@ -16,5 +17,6 @@
 		"exhibition/tunnellingArtAndPhysics.json",
 		"exhibition/operations.json",
 		"exhibition/eightDiagrams.json"
-	]
+	],
+	"info": "is an artist and musician based in Dublin. He completed a BA Honors Degree in Fine Art at the Natonal College of Art and design in 2013, specializing in printmaking and writing a thesis on the influence of Taoism in the work of Robert Janz. On graduating he was awarded the Black Church John Kelly RHA (1932-2006) Award and remains a Black Church Print Studio member. In 2015 he completed a higher diploma in Computer Science at Dublin Business School.<p>His work has been exhibited in the RHA and RUA Annual Exhibitions,the RDS Student Art Awards Exhibition and Travelling Exhibition and group exhibitions in the Mermaid Arts Centre, The Library Project,the Talbot Gallery, Temple Bar Gallery + Studios, The Cross Gallery and NCAD Gallery.</p><p>Private and public collections include the National Irish Visual Arts Library and the OPW.</p><p>email: boonnick@hotmail.com</p><p>github: <a>https://github.com/nickboon</a></p>"
 }

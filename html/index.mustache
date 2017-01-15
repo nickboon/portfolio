@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Boon</title>
+	<link rel="icon" href="swallow.gif">
+	<link href="css/normalize.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">	
+</head>
+<body>	
+	<section>
+		<header>
+			<h1>{{title}}</h1> {{{info}}}
+		</header>
+		<div>			
+			<div class="images">
+				{{#images}}
+				<img src="{{url}}" alt="{{{caption}}}">
+				{{/images}}
+			</div>
+		</div>
+	</section>
+	
+	<section>
+		<h2>Projects</h2>
+		<ul>
+			{{#collections}}
+			<li>
+				<section>
+					<div>
+						<h3>{{title}}</h3> {{info}}
+					</div>
+					<div>
+						<div class="images">
+							{{#images}}
+							<img src="{{url}}" alt= "{{{caption}}}">
+							{{/images}}
+						</div>			
+					</div>
+				</section>
+			</li>
+			{{/collections}}
+		</ul>
+	</section>	
+</body>
+</html>

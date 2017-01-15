@@ -1,4 +1,10 @@
-node_modules/*
+node_modules
 npm-debug.log
 /dist/index.html
-/json/built/*
+/dist/photo
+/dist/screenshot
+/dist/etching
+/dist/js
+/dist/css/lightbox.min.css
+/dist/images
+/json/built

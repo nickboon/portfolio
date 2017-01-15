@@ -1,1 +1,41 @@
+body {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2em;
+	background-color: #fff; 
+}
 
+/* main dark colour */
+body, a:link , a:visited, a:active {
+	color:#666666;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	outline: 1px solid #666666;
+}
+
+section, div {
+	margin-bottom: 2em;
+}
+
+h1, h2, h3 {
+	display: inline;
+	margin-bottom: 2em;
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+img {
+	width: 200px;
+}
+.images {
+	font-size: 0; /* removes white borders */
+}

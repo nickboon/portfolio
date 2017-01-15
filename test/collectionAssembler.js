@@ -2,7 +2,7 @@ var assert = require('assert');
 var should = require('should');
 
 describe('collectionData', function() {
-	var collectionAssembler = require('../collectionData.js');
+	var assembler = require('../collectionAssembler.js');
 
 	describe('.assembled(data, assembler)', function() {
 		var knownCollection = {
@@ -23,20 +23,20 @@ describe('collectionData', function() {
 
 		it('should throw with no argument supplied.', function() {	
 			assert.throws(function () {
-				collectionAssembler.assembled();
+				assembler.assembled();
 			});						
 		});
 		it('should pass back an empty object.', function() {			
 			var expected = {};
-			var actual = collectionAssembler.assembled(expected);
+			var actual = assembler.assembled(expected);
 			assert.equal(actual, expected);						
 		});
 		it('should return a correctly assembled collection.', function() {			
 			var fetcher = require('../fetcher.js').create();			
-			collectionAssembler.setFetcher(fetcher);
+			assembler.setFetcher(fetcher);
 			
 			var expected = assembledCollection;
-			var actual = collectionAssembler.assembled(knownCollection);
+			var actual = assembler.assembled(knownCollection);
 			should(actual).eql(expected);
 		});
 		it('should be able to assemble nested collections.', function() {
@@ -50,7 +50,7 @@ describe('collectionData', function() {
 			knownCollection.collections = ['./test/json/subsubcollection.json'];
 			
 			var expected = assembledCollection;
-			var actual = collectionAssembler.assembled(knownCollection);
+			var actual = assembler.assembled(knownCollection);
 			should(actual).eql(expected);
 		});
 	});

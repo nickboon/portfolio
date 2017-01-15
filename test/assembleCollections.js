@@ -5,13 +5,13 @@ var expected = require('./json/assembledCollections.json');
 var fetcher = require('../fetcher').create('./test/json/');
 var collection = fetcher
 	.fetched(null, null, 'collection.json');
-var collectionAssembler = require('../collectionData')
+var assembler = require('../collectionAssembler')
 	.setFetcher(fetcher);
 
 
 describe('Assembling nested image colections.', function() {
 	it('should return a correctly assembled collection.', function() {
-		var actual = collectionAssembler.assembled(collection);
+		var actual = assembler.assembled(collection);
 		should(actual).eql(expected);	
 	});
 });

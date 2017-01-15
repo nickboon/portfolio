@@ -2,35 +2,35 @@ var assert = require('assert');
 var should = require('should');
 
 describe('imageData', function() {
-	var image = require('../imageData.js');
+	var assembler = require('../imageAssembler.js');
 	
-	describe('.captionFrom(data)', function() {
+	describe('.captionAssembledFrom(data)', function() {
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
-				image.captionFrom();
+				assembler.captionAssembledFrom();
 			});			
 		});
 		
 		it('should return a correctly formatted caption.', function() {
 			var expected = '';
-			var actual = image.captionFrom({});			
+			var actual = assembler.captionAssembledFrom({});			
 			assert.equal(actual, expected);			
 
 			expected = '2003.';
-			actual = image.captionFrom({
+			actual = assembler.captionAssembledFrom({
 				date: '2003'
 			});			
 			assert.equal(actual, expected);			
 
 			expected = '<em>Working Title</em>, 2003.';
-			actual = image.captionFrom({
+			actual = assembler.captionAssembledFrom({
 				date: '2003',
 				title: 'Working Title'
 			});		
 			assert.equal(actual, expected);			
 
 			expected = 'My Holidays <em>Working Title</em>, 2003.';
-			actual = image.captionFrom({
+			actual = assembler.captionAssembledFrom({
 				date: '2003',
 				title: 'Working Title',
 				imageSet: 'My Holidays'
@@ -38,14 +38,14 @@ describe('imageData', function() {
 			assert.equal(actual, expected);			
 
 			expected = 'My Holidays, w/p.';
-			actual = image.captionFrom({
+			actual = assembler.captionAssembledFrom({
 				edition: 'w/p',
 				imageSet: 'My Holidays'
 			});		
 			assert.equal(actual, expected);			
 
 			expected = 'My Holidays.';
-			actual = image.captionFrom({
+			actual = assembler.captionAssembledFrom({
 				imageSet: 'My Holidays'
 			});		
 			assert.equal(actual, expected);			
@@ -53,28 +53,28 @@ describe('imageData', function() {
 	});
 	describe('.assembled(data, owner)', function() {
 		var imageAssembled = function (knownData) {
-			knownData.caption = image.captionFrom(knownData);
+			knownData.caption = assembler.captionAssembledFrom(knownData);
 			return knownData;
 		}; 
 
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
-				image.assembled();
+				assembler.assembled();
 			});			
 			
 			assert.throws(function () {
-				image.assembled("boo");
+				assembler.assembled("boo");
 			});
 		});			
 		it('should pass back an empty object.', function() {			
 			var expected = {};
-			var actual = image.assembled(expected);
+			var actual = assembler.assembled(expected);
 			assert.equal(actual, expected);						
 		});
 		it('should return a correctly assembled image object.', function() {			
 			var knownImage = {author: 'me'};
 			var expected = imageAssembled(knownImage);
-			var actual = image.assembled(knownImage);
+			var actual = assembler.assembled(knownImage);
 
 			should(actual).eql(expected);
 		});
@@ -83,7 +83,7 @@ describe('imageData', function() {
 			var knownImage = {author: 'me'};
 		
 			expected = imageAssembled({author:'me', imageSet: owningColection});
-			actual = image.assembled(knownImage, owningColection);
+			actual = assembler.assembled(knownImage, owningColection);
 			should(actual).eql(expected);
 		});
 	});

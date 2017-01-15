@@ -4,7 +4,7 @@ var collection = require(srcPath);
 var pathSeperator = require('path').sep;
 var root = srcPath.substr(0, srcPath.lastIndexOf(pathSeperator) + 1);
 var fetcher = require('./fetcher').create(root);
-var assembler = require('./collectionData').setFetcher(fetcher);
+var assembler = require('./collectionAssembler').setFetcher(fetcher);
 
 function write(path, content) {
 	var fs = require('fs');

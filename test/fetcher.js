@@ -4,7 +4,7 @@ var should = require('should');
 describe('fetcher', function() {
 	var fetcherFactory = require('../fetcher');
 	var fetcher = fetcherFactory.create();
-	var image = require('../imageData.js');
+	var image = require('../imageAssembler.js');
 	var url = './test/json/image.json';
 	describe('.fetched(assembler, owner, url)', function() {
 			it('should return an object form the given url.', function() {			

@@ -3,7 +3,7 @@ var should = require('should');
 
 describe('collectionData', function() {
 	var collectionAssembler = require('../collectionData.js');
-	
+
 	describe('.assembled(data, assembler)', function() {
 		var knownCollection = {
 			title:  'Title',
@@ -11,15 +11,15 @@ describe('collectionData', function() {
 			images: ['./test/json/image.json']
 		};
 		var assembledCollection = {
-				title:  'Title',
-				info: 'Some info about this collection',
-				images: [{
-					"author": "Nick Boon",
-					"caption": "Title <em>Image 1</em>, Nick Boon.",
-					"imageSet": "Title",
-					"title": "Image 1"
-				}]
-			};
+			title:  'Title',
+			info: 'Some info about this collection',
+			images: [{
+				"author": "Nick Boon",
+				"caption": "Title <em>Image 1</em>, Nick Boon.",
+				"imageSet": "Title",
+				"title": "Image 1"
+			}]
+		};
 
 		it('should throw with no argument supplied.', function() {	
 			assert.throws(function () {

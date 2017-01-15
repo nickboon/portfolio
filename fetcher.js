@@ -6,8 +6,7 @@ function fetchedObjectFrom(url, assembler, owner) {
 	return fetchedObject;
 }
 
-module.exports = {
-	
+module.exports = {	
 	create: function (r) {
 		var root = (r === undefined) ? '' : r;
 		

@@ -13,9 +13,13 @@
     "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
     "postbuild:json": "jsonlint ./json/built/index.json -q",
-    "build:html": "mustache json/built/index.json html/index.mustache > dist/index.html",
-    "postbuild:html": "html-validator --file=dist/index.html",
-    "build": "npm run build:json && npm run build:html"
+    "build:html": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index.mustache > dist/index.html",
+    "build:html:beautify": "js-beautify --html -f dist/index.html -o dist/index.html",
+    "build:html:validate": "html-validator --file=dist/index.html",
+    "postbuild:html": "npm run build:html:beautify && npm run build:html:validate",
+    "build": "npm run build:json && npm run build:html",
+    "deploy:test": "node ./deploy.js",
+    "postdeploy:test": "chromium-browser https://nickboon.neocities.org/test/test.html &"
   },
   "repository": {
     "type": "git",
@@ -36,11 +40,13 @@
   "homepage": "https://github.com/nickboon/portfolio#readme",
   "devDependencies": {
     "html-validator-cli": "^3.1.0",
+    "js-beautify": "^1.6.8",
     "jshint": "^2.9.4",
     "jsonlint": "^1.6.2",
     "lite-server": "^2.2.2",
     "mocha": "^3.2.0",
     "mustache": "^2.3.0",
+    "neocities": "0.0.3",
     "rimraf": "^2.5.4",
     "should": "^11.1.2"
   }

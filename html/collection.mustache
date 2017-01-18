@@ -1,0 +1,11 @@
+<section class="level{{level}}">
+	<h{{level}}>{{title}}</h{{level}}> {{{info}}}
+	{{>images}}
+</section>
+<section class="level{{level}}">
+	<ul>
+		{{# collections}}
+		<li>{{>collection}}</li>
+		{{/ collections}}
+	</ul>
+</section>

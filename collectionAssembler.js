@@ -2,13 +2,21 @@ var fetcher;
 var ofImages = require('./imageAssembler.js');
 
 function assembled(collection, owner) {
-	if (!collection || typeof collection === 'string') throw 'No colection data to assemble.';		
+	var ofCollections = this;
+		
+	if (!collection || typeof collection === 'string') throw 'No collection data to assemble.';		
+
+	collection.level = owner ? owner + 1 : 1; 
+
 	if (collection.collections)
 		collection.collections = fetcher
-			.fetchedList(this, null, collection.collections);
+			.fetchedList(ofCollections, collection.level, collection.collections);
+	else collection.collections = []; //recursive mustache partials will enter an endless loop if no empty array.
+	
 	if (collection.images)
 		collection.images = fetcher
 			.fetchedList(ofImages, collection.title, collection.images);
+	
 	return collection;  		
 }
 

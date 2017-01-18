@@ -9,6 +9,10 @@
 	<link href="css/style.css" rel="stylesheet">	
 </head>
 <body>	
+	{{>collection}}	
+	
+	
+<!--
 	<section>
 		<header>
 			<h1>{{title}}</h1> {{{info}}}
@@ -16,7 +20,6 @@
 		<div>			
 			<div class="images">
 				{{#images}}
-				<img src="{{url}}" alt="{{{caption}}}">
 				{{/images}}
 			</div>
 		</div>
@@ -34,7 +37,7 @@
 					<div>
 						<div class="images">
 							{{#images}}
-							<img src="{{url}}" alt= "{{{caption}}}">
+							<img src="{{url}}" alt= "{{{title}}} {{{medium}}} {{{author}}} {{{date}}}">
 							{{/images}}
 						</div>			
 					</div>
@@ -43,5 +46,12 @@
 			{{/collections}}
 		</ul>
 	</section>	
+-->
+<!--
+
+	<script id="collection" type="text/template">
+		{{>collection}}
+	</script>
+-->
 </body>
 </html>

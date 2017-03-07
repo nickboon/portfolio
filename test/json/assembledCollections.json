@@ -9,27 +9,32 @@
 		}
 	],
 	"info": "Info about Collection 1",
+	"level": 1,
 	"collections": [
 		{
 			"title": "Collection 2",
 			"images": [],
+			"level": 2,
 			"collections": [
 				{
 					"title": "Collection 4",
 					"images": [],
 					"info": "Info about Collection 4",
+					"level": 3,
 					"collections": []
 				}
 			]
 		},
 		{
+			"collections": [],
 			"images": [
 				{
 					"title": "Image 1",
 					"author": "Nick Boon",
 					"caption": "<em>Image 1</em>, Nick Boon."
 				}
-			]
+			],
+			"level": 2
 		}		
 	]
 }

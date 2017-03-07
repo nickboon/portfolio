@@ -8,17 +8,21 @@ describe('collectionData', function() {
 		var knownCollection = {
 			title:  'Title',
 			info: 'Some info about this collection',
-			images: ['./test/json/image.json']
+			level: 1,
+			images: ['./test/json/image.json'],
+			collections: []
 		};
 		var assembledCollection = {
 			title:  'Title',
 			info: 'Some info about this collection',
+			level: 1,
 			images: [{
 				"author": "Nick Boon",
 				"caption": "Title <em>Image 1</em>, Nick Boon.",
 				"imageSet": "Title",
 				"title": "Image 1"
-			}]
+			}],
+			collections: []
 		};
 
 		it('should throw with no argument supplied.', function() {	
@@ -44,6 +48,7 @@ describe('collectionData', function() {
 				title: "Collection 4",
 				images: [],
 				info: "Info about Collection 4",
+				level: 2,
 				collections: []
 			}];
 			knownCollection.images = ['./test/json/image.json'];			

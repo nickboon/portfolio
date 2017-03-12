@@ -1,5 +1,3 @@
-var _ = require('underscore');
-
 function captionAssembledFrom(image) {
 	if (!image || typeof image === 'string') throw 'No image data to caption.';
 	var info = [
@@ -20,11 +18,29 @@ function captionAssembledFrom(image) {
 	else return joined[0].toUpperCase() + joined.slice(1) + '.';	
 }
 
-function assembled(image, owner) {
-	if (!image || typeof image === 'string') throw 'No image data to assemble.';
-    if (owner) image.imageSet = owner;
-	if (!_.isEmpty(image)) image.caption = captionAssembledFrom(image);
-	return image;	
+function assembledFrom(image) {
+	return {
+		withImageSet: function (title) {
+			if (title) image.imageSet = title;
+			return this;
+		},
+
+		withCaption: function () {
+			var _ = require('underscore');
+			if (!_.isEmpty(image)) image.caption = captionAssembledFrom(image);
+			return this;
+		},
+		
+		image: image
+	};
+}
+
+function assembled(src, owner) {
+	if (!src || typeof src === 'string') throw 'No image data to assemble.';
+	return assembledFrom(src)
+		.withImageSet(owner)
+		.withCaption()
+		.image;	
 }
 
 module.exports = {

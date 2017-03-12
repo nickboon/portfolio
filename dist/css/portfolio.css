@@ -17,7 +17,10 @@ body, a:link , a:visited, a:active {
 	color:#667;
 }
 
-a:hover,
+a:hover {
+	outline: 1px solid #667;	
+}
+/*
 h1:hover,
 h2:hover,
 h3:hover,
@@ -27,6 +30,7 @@ h6:hover {
 	outline: 1px solid #667;
 	cursor: pointer;
 }
+*/
 
 h1, h2, h3, h4, h5, h6 {
 	margin-bottom: 6px;	

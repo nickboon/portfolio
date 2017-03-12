@@ -1,26 +1,27 @@
 var assert = require('assert');
 var should = require('should');
 
-describe('collectionData', function() {
+describe('collectionAssembler', function() {
 	var assembler = require('../collectionAssembler.js');
 
-	describe('.assembled(data, assembler)', function() {
+	describe('.assembled(src, owner)', function() {
 		var knownCollection = {
 			title:  'Title',
 			info: 'Some info about this collection',
-			level: 1,
 			images: ['./test/json/image.json'],
-			collections: []
 		};
 		var assembledCollection = {
 			title:  'Title',
+			htmlHeader: "h1",
+			htmlSubheader: "h2",
 			info: 'Some info about this collection',
 			level: 1,
 			images: [{
 				"author": "Nick Boon",
 				"caption": "Title <em>Image 1</em>, Nick Boon.",
 				"imageSet": "Title",
-				"title": "Image 1"
+				"title": "Image 1",
+				"id": "_/test/json/image_json"
 			}],
 			collections: []
 		};
@@ -30,11 +31,13 @@ describe('collectionData', function() {
 				assembler.assembled();
 			});						
 		});
+		
 		it('should pass back an empty object.', function() {			
 			var expected = {};
 			var actual = assembler.assembled(expected);
 			assert.equal(actual, expected);						
 		});
+		
 		it('should return a correctly assembled collection.', function() {			
 			var fetcher = require('../fetcher.js').create();			
 			assembler.setFetcher(fetcher);
@@ -43,10 +46,14 @@ describe('collectionData', function() {
 			var actual = assembler.assembled(knownCollection);
 			should(actual).eql(expected);
 		});
+		
 		it('should be able to assemble nested collections.', function() {
 			assembledCollection.collections = [{
 				title: "Collection 4",
+				htmlHeader: "h2",
+				htmlSubheader: "h3",
 				images: [],
+				id: "_/test/json/subsubcollection_json",
 				info: "Info about Collection 4",
 				level: 2,
 				collections: []

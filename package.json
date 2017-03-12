@@ -8,7 +8,7 @@
     "pretest": "jshint ./test/*.js",
     "test": "mocha",
     "lint:json:src": "jsonlint ./json/src.json -q",
-    "lint": "jshint ./*.js ./json/**/*.json",
+    "lint": "jshint ./*.js  ./js/**/*.js ./json/**/*.json",
     "build:json": "node ./buildJson.js ./json/src.json ./json/built/index.json",
     "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",

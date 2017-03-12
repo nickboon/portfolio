@@ -2,13 +2,13 @@ var assert = require('assert');
 var should = require('should');
 
 describe('collectionAssembler', function() {
-	var assembler = require('../collectionAssembler.js');
+	var assembler = require('../js/jsonBuild/collectionAssembler.js');
 
 	describe('.assembled(src, owner)', function() {
 		var knownCollection = {
 			title:  'Title',
 			info: 'Some info about this collection',
-			images: ['./test/json/image.json'],
+			images: ['../../test/json/image.json'],
 		};
 		var assembledCollection = {
 			title:  'Title',
@@ -21,7 +21,7 @@ describe('collectionAssembler', function() {
 				"caption": "Title <em>Image 1</em>, Nick Boon.",
 				"imageSet": "Title",
 				"title": "Image 1",
-				"id": "_/test/json/image_json"
+				"id": "__/__/test/json/image_json"
 			}],
 			collections: []
 		};
@@ -39,7 +39,7 @@ describe('collectionAssembler', function() {
 		});
 		
 		it('should return a correctly assembled collection.', function() {			
-			var fetcher = require('../fetcher.js').create();			
+			var fetcher = require('../js/jsonBuild/fetcher.js').create();			
 			assembler.setFetcher(fetcher);
 			
 			var expected = assembledCollection;
@@ -53,13 +53,13 @@ describe('collectionAssembler', function() {
 				htmlHeader: "h2",
 				htmlSubheader: "h3",
 				images: [],
-				id: "_/test/json/subsubcollection_json",
+				id: "__/__/test/json/subsubcollection_json",
 				info: "Info about Collection 4",
 				level: 2,
 				collections: []
 			}];
-			knownCollection.images = ['./test/json/image.json'];			
-			knownCollection.collections = ['./test/json/subsubcollection.json'];
+			knownCollection.images = ['../../test/json/image.json'];			
+			knownCollection.collections = ['../../test/json/subsubcollection.json'];
 			
 			var expected = assembledCollection;
 			var actual = assembler.assembled(knownCollection);

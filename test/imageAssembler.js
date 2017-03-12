@@ -2,7 +2,7 @@ var assert = require('assert');
 var should = require('should');
 
 describe('imageData', function() {
-	var assembler = require('../imageAssembler.js');
+	var assembler = require('../js/jsonBuild/imageAssembler.js');
 	
 	describe('.captionAssembledFrom(image)', function() {
 		it('should throw with no argument supplied.', function() {						

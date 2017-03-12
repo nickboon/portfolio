@@ -4,7 +4,7 @@ var should = require('should');
 describe('imageData', function() {
 	var assembler = require('../imageAssembler.js');
 	
-	describe('.captionAssembledFrom(data)', function() {
+	describe('.captionAssembledFrom(image)', function() {
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
 				assembler.captionAssembledFrom();
@@ -51,7 +51,7 @@ describe('imageData', function() {
 			assert.equal(actual, expected);			
 		});
 	});
-	describe('.assembled(data, owner)', function() {
+	describe('.assembled(src, owner)', function() {
 		var imageAssembled = function (knownData) {
 			knownData.caption = assembler.captionAssembledFrom(knownData);
 			return knownData;
@@ -65,12 +65,14 @@ describe('imageData', function() {
 			assert.throws(function () {
 				assembler.assembled("boo");
 			});
-		});			
+		});	
+				
 		it('should pass back an empty object.', function() {			
 			var expected = {};
 			var actual = assembler.assembled(expected);
 			assert.equal(actual, expected);						
 		});
+		
 		it('should return a correctly assembled image object.', function() {			
 			var knownImage = {author: 'me'};
 			var expected = imageAssembled(knownImage);
@@ -78,6 +80,7 @@ describe('imageData', function() {
 
 			should(actual).eql(expected);
 		});
+		
 		it('should return an image object with an image set if owner suplied.', function() {			
 			var owningColection = 'My Holidays';
 			var knownImage = {author: 'me'};

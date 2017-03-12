@@ -58,8 +58,5 @@ img {
 
 .extendable:hover {
 	outline: 1px solid #667;
-}
-
-.closed:after {
-	content: "}";
+	cursor: pointer;
 }

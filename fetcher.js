@@ -1,7 +1,18 @@
 var _ = require('underscore');
+var html5IdInvalid = /\s|\./g;
 
-function fetchedObjectFrom(url, assembler, owner) {	
+function replaceInvalidCharactersIn(id) {
+	return id.replace(html5IdInvalid, "_");
+}
+
+function addIdTo(object, id) {
+	object.id = replaceInvalidCharactersIn(id);
+	return object;
+}
+
+function fetchedObjectFrom(url, assembler, owner) {			
 	var fetchedObject = _.clone(require(url));
+	fetchedObject = addIdTo(fetchedObject, url);
 	if(assembler) return assembler.assembled(fetchedObject, owner);
 	return fetchedObject;
 }
@@ -21,7 +32,9 @@ module.exports = {
 				return urls.map(function (url) {
 					return fetchedObjectFrom(root + url, assembler, owner);
 				});
-			}
+			},
+			
+			addIdTo: addIdTo
 		};
 	}
 }; 

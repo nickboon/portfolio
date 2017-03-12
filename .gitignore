@@ -9,3 +9,8 @@ dist/css/lightbox.min.css
 dist/images
 json/built
 deploy.js
+dist/fonts
+
+
+#TEMP
+json/src_1.json

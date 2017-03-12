@@ -16,7 +16,7 @@
     "build:html": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index.mustache > dist/index.html",
     "build:html:beautify": "js-beautify --html -f dist/index.html -o dist/index.html",
     "build:html:validate": "html-validator --file=dist/index.html",
-    "postbuild:html": "npm run build:html:beautify && npm run build:html:validate",
+    "postbuild:html": "npm run build:html:beautify && npm run build:html:validate ; npm start",
     "build": "npm run build:json && npm run build:html",
     "deploy:test": "node ./deploy.js",
     "postdeploy:test": "chromium-browser https://nickboon.neocities.org/test/test.html &"

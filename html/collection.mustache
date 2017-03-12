@@ -1,11 +1,21 @@
-<section class="level{{level}}">
-	<h{{level}}>{{title}}</h{{level}}> {{{info}}}
-	{{>images}}
-</section>
-<section class="level{{level}}">
-	<ul>
-		{{# collections}}
-		<li>{{>collection}}</li>
-		{{/ collections}}
-	</ul>
-</section>
+<div class="column indented">
+	<{{htmlHeader}} class="open">{ {{title}}</{{htmlHeader}}>
+	<div class="{{& id}}_content">
+		<div class="indented">
+			{{>images}}
+			{{#info}}	
+			<{{htmlSubheader}} class="open">{ Info</{{htmlSubheader}}>
+			<div class="{{& id}}_info_content">
+				<div class="indented">{{{info}}}</div>
+				<{{htmlSubheader}}>}</{{htmlSubheader}}>
+			</div>				
+			{{/info}}
+		</div>
+	</div>
+</div>
+<div class="indented">
+{{#collections}}{{>collection}}{{/collections}}
+</div>
+<div class="{{& id}}_content column indented">
+	<{{htmlHeader}}><span class="{{& id}}_content">}</span></{{htmlHeader}}>
+</div>

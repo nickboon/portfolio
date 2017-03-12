@@ -1,0 +1,20 @@
+{
+	"title": "Selected Projects",
+	"images": [
+		"photo/outOfPrint.json",
+		"etching/overheadTheAlbatrossBoyDetails.json",
+		"etching/structuredQueryLanguage.json",
+		"etching/sum12.json",
+		"etching/heartVibration.json",
+		"etching/circuitDetail.json",
+		"photo/emergentPathScreen.json"
+	],
+	"collections": [
+		"exhibition/lightLines.json",
+		"exhibition/outOfPrint.json",
+		"exhibition/theories.json",
+		"exhibition/tunnellingArtAndPhysics.json",
+		"exhibition/operations.json",
+		"exhibition/eightDiagrams.json"
+	]
+}

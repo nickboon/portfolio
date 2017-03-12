@@ -2,11 +2,11 @@
 	"title": "Collection 1",
 	"htmlHeader": "h1",
 	"htmlSubheader": "h2",
-	"id": "__/__/test/json/collection_json",
+	"id": "______test_json_collection_json",
 	"info": "",
 	"images": [
 		{
-			"id": "__/__/test/json/_/image_json",
+			"id": "______test_json___image_json",
 			"title": "Image 1",
 			"author": "Nick Boon",
 			"caption": "Collection 1 <em>Image 1</em>, Nick Boon.",
@@ -22,7 +22,7 @@
 			"level": 2,
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "__/__/test/json/subcollection_json",
+			"id": "______test_json_subcollection_json",
 			"info": "",
 			"collections": [
 				{
@@ -33,7 +33,7 @@
 					"collections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
-					"id": "__/__/test/json/subsubcollection_json"
+					"id": "______test_json_subsubcollection_json"
 				}
 			]
 		},
@@ -41,11 +41,11 @@
 			"collections": [],
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "__/__/test/json/subcollection2_json",
+			"id": "______test_json_subcollection2_json",
 			"info": "",
 			"images": [
 				{
-					"id": "__/__/test/json/image_json",
+					"id": "______test_json_image_json",
 					"title": "Image 1",
 					"author": "Nick Boon",
 					"caption": "<em>Image 1</em>, Nick Boon."

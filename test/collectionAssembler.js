@@ -21,7 +21,7 @@ describe('collectionAssembler', function() {
 				"caption": "Title <em>Image 1</em>, Nick Boon.",
 				"imageSet": "Title",
 				"title": "Image 1",
-				"id": "__/__/test/json/image_json"
+				"id": "______test_json_image_json"
 			}],
 			collections: []
 		};
@@ -53,7 +53,7 @@ describe('collectionAssembler', function() {
 				htmlHeader: "h2",
 				htmlSubheader: "h3",
 				images: [],
-				id: "__/__/test/json/subsubcollection_json",
+				id: "______test_json_subsubcollection_json",
 				info: "Info about Collection 4",
 				level: 2,
 				collections: []

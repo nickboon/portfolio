@@ -20,7 +20,7 @@ describe('fetcher', function() {
 				author: 'Nick Boon',
 				caption: '<em>Image 1</em>, Nick Boon.',
 				title: 'Image 1',
-				id: '__/__/test/json/image_json'
+				id: '______test_json_image_json'
 			};      
 			var actual = fetcher.fetched(image, null, url);			
 			should(actual).eql(expected);	
@@ -36,7 +36,7 @@ describe('fetcher', function() {
 			var expected =  {
 				author: 'Nick Boon',
 				title: 'Image 1',
-				id: '__/__/test/json/image_json'
+				id: '______test_json_image_json'
 			};      
 			var actual = fetcher.fetched(null, null, url);			
 			should(actual).eql(expected);	
@@ -48,7 +48,7 @@ describe('fetcher', function() {
 			var expected =  {
 				author: 'Nick Boon',
 				title: 'Image 1',
-				id: '__/__/test/json/image_json'
+				id: '______test_json_image_json'
 			};      
 			var actual = rootFetcher.fetched(null, null, relativeUrl);			
 			should(actual).eql(expected);
@@ -65,12 +65,12 @@ describe('fetcher', function() {
 				{
 					author: 'Nick Boon',
 					title: 'Image 1',
-					id: '__/__/test/json/image_json'
+					id: '______test_json_image_json'
 				},
 				{
 					author: 'Nick Boon',
 					title: 'Image 1',
-					id: '__/__/test/json/image_json'
+					id: '______test_json_image_json'
 				},			
 			];			      
 			var actual = fetcher.fetchedList(null, null, urls);			

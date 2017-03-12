@@ -4,7 +4,7 @@
 }
 
 body {
-	font-family: LibreBaskerville-Regular, arial, sans serif;
+	font-family: arial, sans serif;
 	font-size: 16px;
 	width: 95%;
 	margin-left: auto;
@@ -33,6 +33,7 @@ h6:hover {
 */
 
 h1, h2, h3, h4, h5, h6 {
+	font-family: LibreBaskerville-Regular, arial, sans serif;
 	margin-bottom: 6px;	
 	margin-top: 6px;	
 }
@@ -53,4 +54,12 @@ img {
 	margin-bottom: 10px;	
 	margin-top: 10px;	
 	font-size:0;
+}
+
+.extendable:hover {
+	outline: 1px solid #667;
+}
+
+.closed:after {
+	content: "}";
 }

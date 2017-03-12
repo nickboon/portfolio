@@ -1,21 +1,27 @@
 <div class="column indented">
-	<{{htmlHeader}} class="open">{ {{title}}</{{htmlHeader}}>
-	<div class="{{& id}}_content">
-		<div class="indented">
-			{{>images}}
-			{{#info}}	
-			<{{htmlSubheader}} class="open">{ Info</{{htmlSubheader}}>
-			<div class="{{& id}}_info_content">
-				<div class="indented">{{{info}}}</div>
-				<{{htmlSubheader}}>}</{{htmlSubheader}}>
-			</div>				
-			{{/info}}
-		</div>
+	<{{htmlHeader}}>
+		<span class="open" id="{{& id}}">{ {{title}} </span>
+	</{{htmlHeader}}>
+	<div class="{{& id}}_content indented">
+		{{>images}}
+		{{#info}}	
+		<{{htmlSubheader}}>
+			<span class="open" id="{{& id}}_info">{ Info </span>
+		</{{htmlSubheader}}>
+		<div class="{{& id}}_info_content">
+			<div class="indented">{{{info}}}</div>
+			<{{htmlSubheader}}>}</{{htmlSubheader}}>
+		</div>				
+		{{/info}}
 	</div>
 </div>
+
 <div class="indented">
 {{#collections}}{{>collection}}{{/collections}}
 </div>
+
 <div class="{{& id}}_content column indented">
-	<{{htmlHeader}}><span class="{{& id}}_content">}</span></{{htmlHeader}}>
+	<{{htmlHeader}}>
+		<span class="{{& id}}_content">}</span>
+	</{{htmlHeader}}>
 </div>

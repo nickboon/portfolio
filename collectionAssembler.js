@@ -14,7 +14,7 @@ function assembledFrom(collection) {
 			return this;
 		},
 		
-		withSubcollection: function  (ofCollections) {
+		withSubcollectionAssembledBy: function  (ofCollections) {
 			if (collection.collections) collection.collections = fetcher
 				.fetchedList(ofCollections, collection.level, collection.collections);
 			return this;			
@@ -42,14 +42,12 @@ function assembledFrom(collection) {
 }
 
 function assembled(src, owner) {
-	var ofCollections = this;
-				
-	if (!src || typeof src === 'string') throw 'No collection data to assemble.';		
-
+	if (!src || typeof src === 'string')
+		throw 'No collection data to assemble.';		
 	return assembledFrom(src)
 		.withLevel(owner)
 		.withHtmlHeaders()
-		.withSubcollection(ofCollections)
+		.withSubcollectionAssembledBy(this)
 		// recursive mustache partials will enter an endless loop if no empty array.
 		.withEmptySubcollectionIfUndefined()
 		.withImages()

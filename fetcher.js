@@ -5,14 +5,14 @@ function replaceInvalidCharactersIn(id) {
 	return id.replace(html5IdInvalid, "_");
 }
 
-function addIdTo(object, id) {
+function idAdded(object, id) {
 	object.id = replaceInvalidCharactersIn(id);
 	return object;
 }
 
 function fetchedObjectFrom(url, assembler, owner) {			
 	var fetchedObject = _.clone(require(url));
-	fetchedObject = addIdTo(fetchedObject, url);
+	fetchedObject = idAdded(fetchedObject, url);
 	if(assembler) return assembler.assembled(fetchedObject, owner);
 	return fetchedObject;
 }
@@ -34,7 +34,7 @@ module.exports = {
 				});
 			},
 			
-			addIdTo: addIdTo
+			idAdded: idAdded
 		};
 	}
 }; 

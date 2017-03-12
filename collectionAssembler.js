@@ -1,7 +1,12 @@
 var fetcher;
 
 function assembledFrom(collection) {	
-	return {
+	return {	
+		withFetcherId: function (url) {
+			collection = fetcher.idAdded(collection, url);
+			return this;
+		},
+			
 		withLevel: function (owner) {
 			collection.level = owner ? owner + 1 : 1; 
 			return this;
@@ -37,7 +42,7 @@ function assembledFrom(collection) {
 			return this;			
 		},
 		
-		collection: collection		
+		result: collection		
 	};
 }
 
@@ -53,7 +58,7 @@ function assembled(src, owner) {
 		.withImages()
 		 // Stop mustache displaying parent info 
 		.withEmptyInfoIfUndefined()
-		.collection;
+		.result;
 }
 
 module.exports = {
@@ -62,8 +67,11 @@ module.exports = {
 		return this;
 	},
 			
-	assembledFromRoot: function (collection, id) {
-		return fetcher.addIdTo(this.assembled(collection), id);
+	assembledFromRoot: function (collection, url) {
+		var collectionWithNoId = this.assembled(collection); 
+		return assembledFrom(collectionWithNoId)
+			.withFetcherId(url)
+			.result;
 	},	
 			
 	assembled: assembled

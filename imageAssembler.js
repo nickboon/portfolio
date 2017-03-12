@@ -31,7 +31,7 @@ function assembledFrom(image) {
 			return this;
 		},
 		
-		image: image
+		result: image
 	};
 }
 
@@ -40,7 +40,7 @@ function assembled(src, owner) {
 	return assembledFrom(src)
 		.withImageSet(owner)
 		.withCaption()
-		.image;	
+		.result;	
 }
 
 module.exports = {

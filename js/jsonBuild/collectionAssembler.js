@@ -19,13 +19,13 @@ function assembledFrom(collection) {
 			return this;
 		},
 		
-		withSubcollectionAssembledBy: function  (ofCollections) {
+		withSubcollectionsAssembledBy: function  (ofCollections) {
 			if (collection.collections) collection.collections = fetcher
 				.fetchedList(ofCollections, collection.level, collection.collections);
 			return this;			
 		},
 		
-		withEmptySubcollectionIfUndefined: function () {
+		withEmptySubcollectionsIfUndefined: function () {
 			if (!collection.collections) collection.collections = []; 
 			return this;						
 		},
@@ -42,6 +42,16 @@ function assembledFrom(collection) {
 			return this;			
 		},
 		
+		withEmptyLinksIfUndefined: function () {
+			if(collection.links === undefined) collection.links = [];
+			return this;			
+		},
+
+		withEmptyLinksClass: function () {
+			if(collection.links && collection.links.length < 1) collection.linksClass = "empty";
+			return this;			
+		},
+		
 		result: collection		
 	};
 }
@@ -52,12 +62,14 @@ function assembled(src, owner) {
 	return assembledFrom(src)
 		.withLevel(owner)
 		.withHtmlHeaders()
-		.withSubcollectionAssembledBy(this)
+		.withSubcollectionsAssembledBy(this)
 		// recursive mustache partials will enter an endless loop if no empty array.
-		.withEmptySubcollectionIfUndefined()
+		.withEmptySubcollectionsIfUndefined()
+		.withEmptyLinksIfUndefined()
 		.withImages()
 		 // Stop mustache displaying parent info 
 		.withEmptyInfoIfUndefined()
+		.withEmptyLinksClass()
 		.result;
 }
 

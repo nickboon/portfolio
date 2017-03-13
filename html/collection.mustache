@@ -13,6 +13,19 @@
 			<{{htmlSubheader}}>}</{{htmlSubheader}}>
 		</div>				
 		{{/info}}
+		<div class="{{linksClass}}">
+			<{{htmlSubheader}}>
+				<span class="closed" id="{{& id}}_links">{ Links </span>
+			</{{htmlSubheader}}>
+			<div class="{{& id}}_links_content js_closed">
+				<div class="indented">
+					{{#links}}	
+					<a href="{{& .}}" class="clickable">{{& .}}</a>
+					{{/links}}
+				</div>
+				<{{htmlSubheader}}>}</{{htmlSubheader}}>
+			</div>				
+		</div>
 	</div>
 </div>
 

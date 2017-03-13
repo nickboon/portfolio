@@ -4,9 +4,7 @@ dist/index.html
 dist/photo
 dist/screenshot
 dist/etching
-dist/js
-dist/css/lightbox.min.css
-dist/images
+dist/lib
 json/built
 deployNeocities.js
 dist/fonts

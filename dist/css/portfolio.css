@@ -17,10 +17,6 @@ body, a:link , a:visited, a:active {
 	color:#667;
 }
 
-a:hover {
-	outline: 1px solid #667;	
-}
-
 h1, h2, h3, h4, h5, h6 {
 	font-family: LibreBaskerville-Regular, arial, sans serif;
 	margin-bottom: 6px;	
@@ -45,7 +41,7 @@ img {
 	font-size:0;
 }
 
-.extendable:hover {
+.clickable:hover {
 	outline: 1px solid #667;
 	cursor: pointer;
 }

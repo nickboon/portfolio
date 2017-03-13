@@ -18,7 +18,7 @@ describe('collectionAssembler', function() {
 			level: 1,
 			images: [{
 				"author": "Nick Boon",
-				"caption": "Title <em>Image 1</em>, Nick Boon.",
+				"caption": "Title: <em>Image 1</em>, Nick Boon.",
 				"imageSet": "Title",
 				"title": "Image 1",
 				"id": "______test_json_image_json"

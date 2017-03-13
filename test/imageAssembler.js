@@ -29,7 +29,7 @@ describe('imageData', function() {
 			});		
 			assert.equal(actual, expected);			
 
-			expected = 'My Holidays <em>Working Title</em>, 2003.';
+			expected = 'My Holidays: <em>Working Title</em>, 2003.';
 			actual = assembler.captionAssembledFrom({
 				date: '2003',
 				title: 'Working Title',

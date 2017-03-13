@@ -2,7 +2,7 @@ function captionAssembledFrom(image) {
 	if (!image || typeof image === 'string') throw 'No image data to caption.';
 	var info = [
 		(image.imageSet ? image.imageSet : '') +
-		(image.imageSet && image.title ? ' ' : '') + 
+		(image.imageSet && image.title ? ': ' : '') + 
 		(image.title ? '<em>' + image.title + '</em>' : ''), 
 		image.medium,
 		image.dimensions, 

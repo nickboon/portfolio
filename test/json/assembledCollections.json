@@ -2,11 +2,11 @@
 	"title": "Collection 1",
 	"htmlHeader": "h1",
 	"htmlSubheader": "h2",
-	"id": "______test_json_collection_json",
+	"id": "___test_json_collection_json",
 	"info": "",
 	"images": [
 		{
-			"id": "______test_json___image_json",
+			"id": "___test_json___image_json",
 			"title": "Image 1",
 			"author": "Nick Boon",
 			"caption": "Collection 1: <em>Image 1</em>, Nick Boon.",
@@ -26,7 +26,7 @@
 			"linksClass": "empty",
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "______test_json_subcollection_json",
+			"id": "___test_json_subcollection_json",
 			"info": "",
 			"collections": [
 				{
@@ -39,7 +39,7 @@
 					"collections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
-					"id": "______test_json_subsubcollection_json"
+					"id": "___test_json_subsubcollection_json"
 				}
 			]
 		},
@@ -47,11 +47,11 @@
 			"collections": [],
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "______test_json_subcollection2_json",
+			"id": "___test_json_subcollection2_json",
 			"info": "",
 			"images": [
 				{
-					"id": "______test_json_image_json",
+					"id": "___test_json_image_json",
 					"title": "Image 1",
 					"author": "Nick Boon",
 					"caption": "<em>Image 1</em>, Nick Boon."
@@ -63,3 +63,4 @@
 		}		
 	]
 }
+

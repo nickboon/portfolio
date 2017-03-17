@@ -2,10 +2,10 @@ var assert = require('assert');
 var should = require('should');
 
 describe('fetcher', function() {
-	var fetcherFactory = require('../js/jsonBuild/fetcher.js');
+	var fetcherFactory = require('../build/fetcher.js');
 	var fetcher = fetcherFactory.create();
-	var image = require('../js/jsonBuild/imageAssembler.js');
-	var url = '../../test/json/image.json';
+	var image = require('../build/imageAssembler.js');
+	var url = '../test/json/image.json';
 	describe('.idAdded', function (object, id) {
 		it('should return a given object with an html5 css id selector added.', function () {
 			var expected = {id: 'valid_html5_css_id_selector'};
@@ -20,7 +20,7 @@ describe('fetcher', function() {
 				author: 'Nick Boon',
 				caption: '<em>Image 1</em>, Nick Boon.',
 				title: 'Image 1',
-				id: '______test_json_image_json'
+				id: '___test_json_image_json'
 			};      
 			var actual = fetcher.fetched(image, null, url);			
 			should(actual).eql(expected);	
@@ -36,19 +36,19 @@ describe('fetcher', function() {
 			var expected =  {
 				author: 'Nick Boon',
 				title: 'Image 1',
-				id: '______test_json_image_json'
+				id: '___test_json_image_json'
 			};      
 			var actual = fetcher.fetched(null, null, url);			
 			should(actual).eql(expected);	
 		});
 		
 		it('will use relative urls if a root has been set.', function () {			
-			var rootFetcher = fetcherFactory.create('../../test/json/');
+			var rootFetcher = fetcherFactory.create('../test/json/');
 			var relativeUrl = 'image.json';
 			var expected =  {
 				author: 'Nick Boon',
 				title: 'Image 1',
-				id: '______test_json_image_json'
+				id: '___test_json_image_json'
 			};      
 			var actual = rootFetcher.fetched(null, null, relativeUrl);			
 			should(actual).eql(expected);
@@ -65,12 +65,12 @@ describe('fetcher', function() {
 				{
 					author: 'Nick Boon',
 					title: 'Image 1',
-					id: '______test_json_image_json'
+					id: '___test_json_image_json'
 				},
 				{
 					author: 'Nick Boon',
 					title: 'Image 1',
-					id: '______test_json_image_json'
+					id: '___test_json_image_json'
 				},			
 			];			      
 			var actual = fetcher.fetchedList(null, null, urls);			

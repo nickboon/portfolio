@@ -4,7 +4,7 @@ var argument = process.argv[2];
 
 function copy(src, out) {
 	fs.copy(src, out, function (err) {
-	  if (err) return console.error(err)
+	  if (err) return console.error(err);
 	});
 }
 

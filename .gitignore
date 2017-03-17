@@ -1,13 +1,9 @@
 node_modules
 npm-debug.log
-dist/index.html
-dist/photo
-dist/screenshot
-dist/etching
-dist/lib
+dist
 json/built
-deployNeocities.js
-dist/fonts
+deploy/deployNeocities.js
+offline
 
 
 #TEMP

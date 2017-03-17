@@ -2,9 +2,5 @@ node_modules
 npm-debug.log
 dist
 json/built
-deploy/deployNeocities.js
+deploy/neocities.js
 offline
-
-
-#TEMP
-json/src_1.json

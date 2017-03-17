@@ -8,7 +8,6 @@ function copy(src, out) {
 	});
 }
 
-// Todo: move json build to build dir and copy all of ./js/ here 
 copy('./js/portfolio.js', './dist/js/portfolio.js');
 copy('./css', './dist/css');
 copy('./fonts', './dist/fonts/');

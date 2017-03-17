@@ -1,7 +1,11 @@
 var fs = require('fs-extra');
+function copy(src, out) {
+	fs.copy(src, out, function (err) {
+	  if (err) return console.error(err);
+	});
+}
 
 module.exports = exports = function () {
-	fs.copy('./offline', './dist/', function (err) {
-		if (err) return console.error(err);
-	});
+	copy('./offline', './dist/');
+	copy('./images', './dist/lib/images');
 }; 

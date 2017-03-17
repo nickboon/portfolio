@@ -5,23 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nick Boon</title>
 	<link rel="icon" href="swallow.gif">
-	<link href="lib/normalize/normalize.css" rel="stylesheet">
-	<link href="lib/lightbox/lightbox.min.css" rel="stylesheet">	
+
+	<link href="css/lightbox.min.css" rel="stylesheet">	
+	<link href="css/normalize.css" rel="stylesheet">
 	<link href="css/portfolio.css" rel="stylesheet">	
 	
 	<script>document.write('<style>.closed:after { content: "}"; } .js_closed {display:none}</style>');</script>
-
-	<!-- for live use cdn-->	
-	<script src="lib/jquery/jquery-1.7.1.min.js"></script>
+	<script src="js/jquery.min.js"></script>
 </head>
 <body>	
 	{{>collection}}
 	
-	<!-- for live minify this or cdn-->
-	<script src="lib/masonry/masonry.pkgd.min.js"></script>
-	<script src="lib/lightbox/lightbox.min.js"></script>
-
-	<!-- for live minify this-->
+	<script src="js/masonry.pkgd.min.js"></script>
+	<script src="js/lightbox.min.js"></script>
 	<script src="js/portfolio.js"></script>	
 </body>
 </html>

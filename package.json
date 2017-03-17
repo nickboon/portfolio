@@ -21,7 +21,7 @@
     "build": "npm run build:json && npm run build:html",
     "build:offline": "npm run build:json:offline && npm run build:html:offline",
     "deploy:clean": "rimraf ./dist/*",
-    "deploy:local": "npm test && npm run deploy:clean && npm run build && node ./deploy/deploy.js && npm run beautify && npm run validate && npm start",
+    "deploy:local": "npm test && npm run deploy:clean && npm run build && node ./deploy/deploy.js local && npm run beautify && npm run validate && npm start",
     "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && node ./deploy/deploy.js offline && npm run beautify && npm start",
     "deploy:test": "node ./deploy.js",
     "postdeploy:test": "chromium-browser https://nickboon.neocities.org/test/test.html &"
@@ -54,5 +54,11 @@
     "neocities": "0.0.3",
     "rimraf": "^2.5.4",
     "should": "^11.1.2"
+  },
+  "dependencies": {
+    "jquery": "1.12.4",
+    "lightbox2": "^2.9.0",
+    "masonry-layout": "^4.1.1",
+    "normalize.css": "5.0.0"
   }
 }

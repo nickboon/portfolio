@@ -1,4 +1,8 @@
 var fs = require('fs-extra');
+var addNormalizeCss = require('./normalizeCss');
+var addDependencies = require('./depMin');
+var deployMasonry = require('./masonry');
+
 function copy(src, out) {
 	fs.copy(src, out, function (err) {
 	  if (err) return console.error(err);
@@ -7,5 +11,6 @@ function copy(src, out) {
 
 module.exports = exports = function () {
 	copy('./offline', './dist/');
-	copy('./images', './dist/lib/images');
+	addNormalizeCss();
+	addDependencies();
 }; 

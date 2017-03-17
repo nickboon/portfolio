@@ -1,1 +1,8 @@
-{}
+{
+	"title": "Nick Boon",
+	"images": ["etching/selfPortraitInCloud.json"],
+	"info": "Nick Boon is a printmaker and musician from Trinidad. He graduated from NCAD in 2013 and was awarded the Black Church John Kelly RHA (1932-2006) Award and remains a studio member. In 2015 he completed a higher diploma in Computer Science at Dublin Business School.<p>His work has been exhibited in the RHA and RUA Annual Exhibitions,the RDS Student Art Awards Exhibition and Travelling Exhibition and group exhibitions in the Mermaid Arts Centre, The Library Project,the Talbot Gallery, Temple Bar Gallery + Studios, The Cross Gallery and NCAD Gallery.</p><p>It is held in private and public collections including the National Irish Visual Arts Library and the OPW.</p><p>contact: boonnickathotmaildotcom</p>",
+	"links": [
+		"https://github.com/nickboon"
+	]
+}

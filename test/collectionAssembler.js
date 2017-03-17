@@ -16,6 +16,8 @@ describe('collectionAssembler', function() {
 			htmlSubheader: "h2",
 			info: 'Some info about this collection',
 			level: 1,
+			"links": [],
+			"linksClass": "empty",
 			images: [{
 				"author": "Nick Boon",
 				"caption": "Title: <em>Image 1</em>, Nick Boon.",
@@ -50,6 +52,8 @@ describe('collectionAssembler', function() {
 		it('should be able to assemble nested collections.', function() {
 			assembledCollection.collections = [{
 				title: "Collection 4",
+				links: [],
+				linksClass: 'empty',
 				htmlHeader: "h2",
 				htmlSubheader: "h3",
 				images: [],

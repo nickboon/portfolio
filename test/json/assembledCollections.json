@@ -15,11 +15,15 @@
 	],
 	"info": "Info about Collection 1",
 	"level": 1,
+	"links": [],
+	"linksClass": "empty",
 	"collections": [
 		{
 			"title": "Collection 2",
 			"images": [],
 			"level": 2,
+			"links": [],
+			"linksClass": "empty",
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
 			"id": "______test_json_subcollection_json",
@@ -30,6 +34,8 @@
 					"images": [],
 					"info": "Info about Collection 4",
 					"level": 3,
+					"links": [],
+					"linksClass": "empty",
 					"collections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
@@ -51,7 +57,9 @@
 					"caption": "<em>Image 1</em>, Nick Boon."
 				}
 			],
-			"level": 2
+			"level": 2,
+			"links": [],
+			"linksClass": "empty"
 		}		
 	]
 }

@@ -13,7 +13,7 @@ body {
 	background-color: #fff; 
 }
 
-body, a:link , a:visited, a:active {
+body, a {
 	color:#667;
 }
 
@@ -41,9 +41,14 @@ img {
 	font-size:0;
 }
 
+.clickable {
+	text-decoration: none; 
+}
+
 .clickable:hover {
 	outline: 1px solid #667;
 	cursor: pointer;
+	text-decoration: none; 
 }
 
 .empty {

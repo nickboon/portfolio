@@ -1,15 +1,16 @@
 var copy = require('./copy');
 var deployOffline = require('./offline');
 var addDependencies = require('./depMin');
-var deployToNeocities = require('./neocities');
+var deployToWeb = require('./online');
 var argument = process.argv[2]; 
-var testPage = 'testIndex';
+var testLabel = 'test';
 
 console.log('deploying to ' + argument + '...');
 copy('./js/portfolio.js', './dist/js/portfolio.js');
 copy('./css', './dist/css');
 copy('./fonts', './dist/fonts');
 copy('./swallow.gif', './dist/swallow.gif');
+
 switch (argument) {
 	case "offline":
 		deployOffline();
@@ -19,6 +20,6 @@ switch (argument) {
 		break;
 	case "test":
 		addDependencies();
-		deployToNeocities(testPage);
+		deployToWeb(testLabel);
 		break;
 }

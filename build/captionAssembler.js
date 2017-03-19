@@ -1,5 +1,5 @@
 module.exports = exports = function (image) {
-	if(image === undefined) throw 'No image data supplied.'
+	if(image === undefined) throw 'No image data supplied.';
 	
 	var info = [
 		(image.imageSet ? image.imageSet : '') +

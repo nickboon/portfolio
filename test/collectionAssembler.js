@@ -12,18 +12,20 @@ describe('collectionAssembler', function() {
 		};
 		var assembledCollection = {
 			title:  'Title',
-			htmlHeader: "h1",
-			htmlSubheader: "h2",
+			htmlHeader: 'h1',
+			htmlSubheader: 'h2',
 			info: 'Some info about this collection',
 			level: 1,
-			"links": [],
-			"linksClass": "empty",
+			links: [],
+			linksClass: 'empty',
 			images: [{
-				"author": "Nick Boon",
-				"caption": "Title: <em>Image 1</em>, Nick Boon.",
-				"imageSet": "Title",
-				"title": "Image 1",
-				"id": "___test_json_image_json"
+			url: 'test/url',
+				thumbnailUrl: 'test/url', 
+				author: 'Nick Boon',
+				caption: 'Title: <em>Image 1</em>, Nick Boon.',
+				imageSet: 'Title',
+				title: 'Image 1',
+				id: '___test_json_image_json'
 			}],
 			collections: []
 		};

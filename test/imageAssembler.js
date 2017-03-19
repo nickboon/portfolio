@@ -1,61 +1,23 @@
 var assert = require('assert');
 var should = require('should');
+var assembler = require('../build/imageAssembler.js');
 
-describe('imageData', function() {
-	var assembler = require('../build/imageAssembler.js');
-	
-	describe('.captionAssembledFrom(image)', function() {
-		it('should throw with no argument supplied.', function() {						
-			assert.throws(function () {
-				assembler.captionAssembledFrom();
-			});			
-		});
-		
-		it('should return a correctly formatted caption.', function() {
-			var expected = '';
-			var actual = assembler.captionAssembledFrom({});			
-			assert.equal(actual, expected);			
-
-			expected = '2003.';
-			actual = assembler.captionAssembledFrom({
-				date: '2003'
-			});			
-			assert.equal(actual, expected);			
-
-			expected = '<em>Working Title</em>, 2003.';
-			actual = assembler.captionAssembledFrom({
-				date: '2003',
-				title: 'Working Title'
-			});		
-			assert.equal(actual, expected);			
-
-			expected = 'My Holidays: <em>Working Title</em>, 2003.';
-			actual = assembler.captionAssembledFrom({
-				date: '2003',
-				title: 'Working Title',
-				imageSet: 'My Holidays'
-			});		
-			assert.equal(actual, expected);			
-
-			expected = 'My Holidays, w/p.';
-			actual = assembler.captionAssembledFrom({
-				edition: 'w/p',
-				imageSet: 'My Holidays'
-			});		
-			assert.equal(actual, expected);			
-
-			expected = 'My Holidays.';
-			actual = assembler.captionAssembledFrom({
-				imageSet: 'My Holidays'
-			});		
-			assert.equal(actual, expected);			
-		});
-	});
+describe('imageAssembler', function() {	
 	describe('.assembled(src, owner)', function() {
-		var imageAssembled = function (knownData) {
-			knownData.caption = assembler.captionAssembledFrom(knownData);
-			return knownData;
-		}; 
+		var knownUnassembledImage = {
+			url: 'test/url',
+			author: 'Nick Boon',
+			title: 'Image 1',
+			id: '___test_json_image_json'
+		};      
+		var knownAssembledImage = {
+			url: 'test/url',
+			thumbnailUrl: 'test/url', 
+			author: 'Nick Boon',
+			caption: '<em>Image 1</em>, Nick Boon.',
+			title: 'Image 1',
+			id: '___test_json_image_json'
+		};      
 
 		it('should throw with no argument supplied.', function() {						
 			assert.throws(function () {
@@ -67,26 +29,25 @@ describe('imageData', function() {
 			});
 		});	
 				
-		it('should pass back an empty object.', function() {			
-			var expected = {};
-			var actual = assembler.assembled(expected);
-			assert.equal(actual, expected);						
+		it('should throw if empty object supplied (needs at least a url).', function() {			
+			assert.throws(function () {
+				assembler.assembled({});
+			});
 		});
 		
 		it('should return a correctly assembled image object.', function() {			
-			var knownImage = {author: 'me'};
-			var expected = imageAssembled(knownImage);
-			var actual = assembler.assembled(knownImage);
+			var expected = knownAssembledImage;
+			var actual = assembler.assembled(knownUnassembledImage);
 
 			should(actual).eql(expected);
 		});
 		
 		it('should return an image object with an image set if owner suplied.', function() {			
 			var owningColection = 'My Holidays';
-			var knownImage = {author: 'me'};
-		
-			expected = imageAssembled({author:'me', imageSet: owningColection});
-			actual = assembler.assembled(knownImage, owningColection);
+			knownAssembledImage.imageSet = owningColection;
+			knownAssembledImage.caption = 'My Holidays: <em>Image 1</em>, Nick Boon.';
+			expected = knownAssembledImage;
+			actual = assembler.assembled(knownUnassembledImage, owningColection);
 			should(actual).eql(expected);
 		});
 	});

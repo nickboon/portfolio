@@ -6,6 +6,8 @@
 	"info": "",
 	"images": [
 		{
+			"url": "test/url",
+			"thumbnailUrl": "test/url", 
 			"id": "___test_json___image_json",
 			"title": "Image 1",
 			"author": "Nick Boon",
@@ -51,6 +53,8 @@
 			"info": "",
 			"images": [
 				{
+					"url": "test/url",
+					"thumbnailUrl": "test/url", 
 					"id": "___test_json_image_json",
 					"title": "Image 1",
 					"author": "Nick Boon",

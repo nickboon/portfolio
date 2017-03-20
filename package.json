@@ -23,8 +23,7 @@
     "deploy:clean": "rimraf ./dist/*",
     "deploy:local": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate  && node deploy/deploy local && npm start",
     "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && npm run beautify && node deploy/deploy offline && npm run start",
-    "deploy:test": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate && node deploy/deploy test",
-    "postdeploy:test": "xdg-open https://nickboon.neocities.org/test"
+    "deploy:test": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate && node deploy/deploy test && xdg-open https://nickboon.neocities.org/test"
   },
   "repository": {
     "type": "git",

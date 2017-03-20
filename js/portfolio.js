@@ -32,5 +32,5 @@ $(function () {
 
  	initJqueryJs();
 	initMasonryJs(refreshMasonryDelayMs);
-	openLevel(initalLevel);
+	openLevel(initialLevel);
 });

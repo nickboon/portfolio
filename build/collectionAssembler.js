@@ -20,13 +20,13 @@ function assembledFrom(collection) {
 		},
 		
 		withSubcollectionsAssembledBy: function  (ofCollections) {
-			if (collection.collections) collection.collections = fetcher
-				.fetchedList(ofCollections, collection.level, collection.collections);
+			if (collection.subcollections) collection.subcollections = fetcher
+				.fetchedList(ofCollections, collection.level, collection.subcollections);
 			return this;			
 		},
 		
 		withEmptySubcollectionsIfUndefined: function () {
-			if (!collection.collections) collection.collections = []; 
+			if (!collection.subcollections) collection.subcollections = []; 
 			return this;						
 		},
 				

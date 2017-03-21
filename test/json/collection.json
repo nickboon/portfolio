@@ -4,7 +4,7 @@
 		"./image.json"
 	],
 	"info": "Info about Collection 1",
-	"collections": [
+	"subcollections": [
 		"subcollection.json",
 		"subcollection2.json"		
 	]

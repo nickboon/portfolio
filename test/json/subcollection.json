@@ -2,7 +2,7 @@
 	"title": "Collection 2",
 	"images": [
 	],
-	"collections": [
+	"subcollections": [
 		"subsubcollection.json"
 	]
 }

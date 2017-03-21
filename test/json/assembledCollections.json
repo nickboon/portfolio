@@ -19,7 +19,7 @@
 	"level": 1,
 	"links": [],
 	"linksClass": "empty",
-	"collections": [
+	"subcollections": [
 		{
 			"title": "Collection 2",
 			"images": [],
@@ -30,7 +30,7 @@
 			"htmlSubheader": "h3",
 			"id": "___test_json_subcollection_json",
 			"info": "",
-			"collections": [
+			"subcollections": [
 				{
 					"title": "Collection 4",
 					"images": [],
@@ -38,7 +38,7 @@
 					"level": 3,
 					"links": [],
 					"linksClass": "empty",
-					"collections": [],
+					"subcollections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
 					"id": "___test_json_subsubcollection_json"
@@ -46,7 +46,7 @@
 			]
 		},
 		{
-			"collections": [],
+			"subcollections": [],
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
 			"id": "___test_json_subcollection2_json",

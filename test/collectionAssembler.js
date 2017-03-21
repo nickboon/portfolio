@@ -27,7 +27,7 @@ describe('collectionAssembler', function() {
 				title: 'Image 1',
 				id: '___test_json_image_json'
 			}],
-			collections: []
+			subcollections: []
 		};
 
 		it('should throw with no argument supplied.', function() {	
@@ -52,7 +52,7 @@ describe('collectionAssembler', function() {
 		});
 		
 		it('should be able to assemble nested collections.', function() {
-			assembledCollection.collections = [{
+			assembledCollection.subcollections = [{
 				title: "Collection 4",
 				links: [],
 				linksClass: 'empty',
@@ -62,10 +62,10 @@ describe('collectionAssembler', function() {
 				id: "___test_json_subsubcollection_json",
 				info: "Info about Collection 4",
 				level: 2,
-				collections: []
+				subcollections: []
 			}];
 			knownCollection.images = ['../test/json/image.json'];			
-			knownCollection.collections = ['../test/json/subsubcollection.json'];
+			knownCollection.subcollections = ['../test/json/subsubcollection.json'];
 			
 			var expected = assembledCollection;
 			var actual = assembler.assembled(knownCollection);

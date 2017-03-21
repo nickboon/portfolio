@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "lite-server -c config/bs-config.json",
+    "getJson" : "../Dropbox-Uploader/dropbox_uploader.sh download . json",
     "pretest": "jshint ./test/*.js",
     "test": "mocha",
     "lint:json:src": "jsonlint ./json/src.json -q",

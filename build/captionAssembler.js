@@ -9,7 +9,9 @@ module.exports = exports = function (image) {
 		image.dimensions, 
 		image.edition,
 		image.author,
-		image.date
+		image.date,
+		image.credit,
+		(image.link ? '<a href="' + image.link + '">' + image.link + '</a>' : '')
 	];
 	var joined = info.filter(function (item) {
 		return item; 

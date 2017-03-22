@@ -1,4 +1,14 @@
 var fetcher;
+var collectionArrays = [
+	"images",
+	"links",
+	"subcollections"
+];
+var collectionStrings = [
+	"title",
+	"info"
+];
+
 
 function assembledFrom(collection) {	
 	return {	
@@ -25,11 +35,6 @@ function assembledFrom(collection) {
 			return this;			
 		},
 		
-		withEmptySubcollectionsIfUndefined: function () {
-			if (!collection.subcollections) collection.subcollections = []; 
-			return this;						
-		},
-				
 		withImages: function  () {
 			var ofImages = require('./imageAssembler.js');
 			if (collection.images) collection.images = fetcher
@@ -37,13 +42,13 @@ function assembledFrom(collection) {
 			return this;
 		},
 		
-		withEmptyInfoIfUndefined: function () {
-			if(collection.info === undefined) collection.info = "";
-			return this;			
-		},
-		
-		withEmptyLinksIfUndefined: function () {
-			if(collection.links === undefined) collection.links = [];
+		withEmptyPropertiesIfUndefined: function () {
+			collectionArrays.forEach(function (collectionArray) {
+				if (!collection[collectionArray]) collection[collectionArray] = []; 
+			});
+			collectionStrings.forEach(function (collectionString) {
+				if(collection[collectionString] === undefined) collection[collectionString] = "";				
+			});
 			return this;			
 		},
 
@@ -63,12 +68,9 @@ function assembled(src, owner) {
 		.withLevel(owner)
 		.withHtmlHeaders()
 		.withSubcollectionsAssembledBy(this)
-		// recursive mustache partials will enter an endless loop if no empty array.
-		.withEmptySubcollectionsIfUndefined()
-		.withEmptyLinksIfUndefined()
 		.withImages()
-		 // Stop mustache displaying parent info 
-		.withEmptyInfoIfUndefined()
+		// recursive mustache partials will enter an endless loop if no empty array.
+		.withEmptyPropertiesIfUndefined()
 		.withEmptyLinksClass()
 		.result;
 }

@@ -1,5 +1,5 @@
 $(function () {	
-	var initialLevel = 1;
+	var initialLevel = 0;
 	var refreshMasonryDelayMs = 100;
 
 	function initJqueryJs() {
@@ -17,7 +17,7 @@ $(function () {
 		setInterval(function () {
 			$('.images').masonry({
 				itemSelector: '.masonry_item'
-			}).masonry('layout');		
+			}).masonry('layout');	
 		}, delay);
 	}
 	

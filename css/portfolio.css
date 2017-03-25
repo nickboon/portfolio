@@ -38,12 +38,14 @@ img {
 .column {
 	float: left;
 	width: 320px;
+	overflow-wrap: break-word;
 }
 .images {
 	margin-bottom: 10px;	
 	margin-top: 10px;	
 	font-size:0;
 }
+
 
 .clickable {
 	text-decoration: none; 
@@ -52,7 +54,7 @@ img {
 .clickable:hover {
 	outline: 1px solid #667;
 	cursor: pointer;
-}
+	z-index: 1000;}
 
 .empty {
 	display: none;

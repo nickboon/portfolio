@@ -10,7 +10,12 @@ function idAdded(object, id) {
 	return object;
 }
 
-function fetchedObjectFrom(url, assembler, owner) {			
+function isJsonUrl(object) {
+	return typeof object === 'string' && object
+		.toLowerCase().endsWith('.json' );
+}
+
+function fetchedObjectFrom(url, assembler, owner) {
 	var fetchedObject = _.clone(require(url));
 	fetchedObject = idAdded(fetchedObject, url);
 	if(assembler) return assembler.assembled(fetchedObject, owner);
@@ -22,15 +27,17 @@ module.exports = {
 		var root = (r === undefined) ? '' : r;
 		
 		return {
-			fetched: function (assembler, owner, url) {
-				if(!url) throw 'No url suppled to fetchedSingle';
-				return fetchedObjectFrom(root + url, assembler, owner);
+			fetched: function (assembler, owner, object) {
+				if(!object) throw 'No object supplied to be fetched.';
+				if(!isJsonUrl(object)) return object;
+				return fetchedObjectFrom(root + object, assembler, owner);
 			},
 
-			fetchedList: function (assembler, owner, urls) {
-				if(!urls) throw 'No url list suppled to fetchedList';
-				return urls.map(function (url) {
-					return fetchedObjectFrom(root + url, assembler, owner);
+			fetchedList: function (assembler, owner, list) {
+				if(!list) throw 'No list supplied to fetchedList';
+				return list.map(function (object) {
+					if(!isJsonUrl) return object;
+					return fetchedObjectFrom(root + object, assembler, owner);
 				});
 			},
 			

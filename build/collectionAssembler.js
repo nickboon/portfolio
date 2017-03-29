@@ -1,37 +1,40 @@
 var fetcher;
 var collectionArrays = [
 	"images",
-	"links",
-	"subcollections"
+	"subcollections",
+	"links"
 ];
 var collectionStrings = [
 	"title",
 	"info"
 ];
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
-function assembledFrom(collection) {	
+function assemblyPipe(collection) {	
 	return {	
 		withFetcherId: function (url) {
 			collection = fetcher.idAdded(collection, url);
 			return this;
 		},
 			
-		withLevel: function (owner) {
-			collection.level = owner ? owner + 1 : 1; 
+		withLevel: function (level) {
+			collection.level = level;
 			return this;
 		},
 		
-		withHtmlHeaders: function  () {
-			collection.htmlHeader = collection.level < 7 ? "h" + collection.level : "h6";
-			collection.htmlSubheader = collection.level < 6 ? 
-				"h" + (collection.level + 1) : "h6";
+		withHtmlHeaders: function  (level) {
+			if (!level) throw 'No level suplied to withHtlHeaders.';
+			collection.htmlHeader = 'h' + ((level > 6) ? 6 : level);
+			collection.htmlSubheader = 'h' + ((level > 5) ? 6 : level + 1);
 			return this;
 		},
 		
-		withSubcollectionsAssembledBy: function  (ofCollections) {
+		withSubcollectionsAssembledBy: function  (ofCollections, level) {
 			if (collection.subcollections) collection.subcollections = fetcher
-				.fetchedList(ofCollections, collection.level, collection.subcollections);
+				.fetchedList(ofCollections, level, collection.subcollections);
 			return this;			
 		},
 		
@@ -51,28 +54,36 @@ function assembledFrom(collection) {
 			});
 			return this;			
 		},
-
+				
 		withEmptyLinksClass: function () {
 			if(collection.links && collection.links.length < 1) collection.linksClass = "empty";
 			return this;			
 		},
-		
-		result: collection		
+				
+		output: collection
 	};
 }
 
-function assembled(src, owner) {
+function assembled(src, owner, d) {
 	if (!src || typeof src === 'string')
-		throw 'No collection data to assemble.';		
-	return assembledFrom(src)
-		.withLevel(owner)
-		.withHtmlHeaders()
-		.withSubcollectionsAssembledBy(this)
+		throw 'No collection data to assemble.';	
+		
+	var level = owner ? owner + 1 : 1;
+	var delimiters = d || {
+		start : '[',
+		end : ']'
+	};
+ 			
+	return assemblyPipe(src)
+		.withSubcollectionsAssembledBy(this, level)
 		.withImages()
-		// recursive mustache partials will enter an endless loop if no empty array.
+		// for html templating  
+		.withLevel(level)
+		.withHtmlHeaders(level)
+		// for mustache
 		.withEmptyPropertiesIfUndefined()
 		.withEmptyLinksClass()
-		.result;
+		.output;
 }
 
 module.exports = {
@@ -80,12 +91,14 @@ module.exports = {
 		if (f) fetcher = f;
 		return this;
 	},
+	
+	createAssemblyPipe: assemblyPipe,
 			
 	assembledFromRootCollection: function (collection, url) {
 		var collectionWithNoId = this.assembled(collection); 
-		return assembledFrom(collectionWithNoId)
+		return assemblyPipe(collectionWithNoId)
 			.withFetcherId(url)
-			.result;
+			.output;
 	},	
 			
 	assembled: assembled

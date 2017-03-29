@@ -1,6 +1,6 @@
 var captionAssembledFrom = require('./captionAssembler'); 
 
-function assembledFrom(image) {
+function assemblyPipe(image) {
 	return {
 		withImageSet: function (title) {
 			if (title) image.imageSet = title;
@@ -13,22 +13,22 @@ function assembledFrom(image) {
 		},
 		
 		withEmptyThumbnailUrlToUrl: function () {
-			if (!image.thumbnailUrl) image.thumbnailUrl = image.url;			
+			image.thumbnailUrl = image.thumbnailUrl || image.url;
 			return this;
 		},
 		
-		result: image
+		output: image
 	};
 }
 
 function assembled(src, owner) {
 	if (!src || typeof src !== 'object') throw 'No image data to assemble.';
 	if (!src.url) throw 'Image has no URL.';
-	return assembledFrom(src)
+	return assemblyPipe(src)
 		.withImageSet(owner)
 		.withCaption()
 		.withEmptyThumbnailUrlToUrl()
-		.result;	
+		.output;	
 }
 
 module.exports = {

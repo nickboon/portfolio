@@ -1,10 +1,15 @@
+var fetcherIdAdded = require('./fetcher').idAdded;
 var fetcher;
-var collectionArrays = [
+var defaultDelimiters = {
+	start : '[',
+	end : ']'
+};
+var lists = [
 	"images",
 	"subcollections",
 	"links"
 ];
-var collectionStrings = [
+var texts = [
 	"title",
 	"info"
 ];
@@ -13,73 +18,86 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function assemblyPipe(collection) {	
+function pipe(collection) {
+	var c = collection || {};
+		
 	return {	
-		withFetcherId: function (url) {
-			collection = fetcher.idAdded(collection, url);
-			return this;
-		},
-			
-		withLevel: function (level) {
-			collection.level = level;
-			return this;
-		},
-		
-		withHtmlHeaders: function  (level) {
-			if (!level) throw 'No level suplied to withHtlHeaders.';
-			collection.htmlHeader = 'h' + ((level > 6) ? 6 : level);
-			collection.htmlSubheader = 'h' + ((level > 5) ? 6 : level + 1);
-			return this;
-		},
-		
 		withSubcollectionsAssembledBy: function  (ofCollections, level) {
-			if (collection.subcollections) collection.subcollections = fetcher
-				.fetchedList(ofCollections, level, collection.subcollections);
+			if (c.subcollections) c.subcollections = fetcher
+				.fetchedList(ofCollections, level, c.subcollections);
 			return this;			
 		},
 		
 		withImages: function  () {
 			var ofImages = require('./imageAssembler.js');
-			if (collection.images) collection.images = fetcher
-				.fetchedList(ofImages, collection.title, collection.images);
+			if (c.images) c.images = fetcher
+				.fetchedList(ofImages, c.title, c.images);
 			return this;
 		},
 		
+		withFetcherId: function (url) {
+			if(!url || typeof url !== 'string' || !url.trim())
+				throw "You must supply an URL to generate a fetcherId.";
+			
+			c = fetcherIdAdded(c, url);
+			return this;
+		},
+			
+		withLevel: function (level) {
+			c.level = level;
+			return this;
+		},
+		
+		withHtmlHeaders: function  (level) {
+			if (!level || typeof level !== 'number')
+				throw 'No level suplied to withHtlHeaders.';
+				
+			if (level < 1) level = 1;
+			c.htmlHeader = 'h' + ((level > 6) ? 6 : level);
+			c.htmlSubheader = 'h' + ((level > 5) ? 6 : level + 1);
+			return this;
+		},
+		
+		withCollectionDelimiters: function (delimiters) {
+			var d = delimiters || defaultDelimiters;
+			c.start = d.start;
+			c.end = d.end;
+			return this;						
+		},
+		
 		withEmptyPropertiesIfUndefined: function () {
-			collectionArrays.forEach(function (collectionArray) {
-				if (!collection[collectionArray]) collection[collectionArray] = []; 
+			lists.forEach(function (list) {
+				if (!c[list]) c[list] = []; 
 			});
-			collectionStrings.forEach(function (collectionString) {
-				if(collection[collectionString] === undefined) collection[collectionString] = "";				
+			texts.forEach(function (text) {
+				if(!c[text]) c[text] = "";				
 			});
 			return this;			
 		},
 				
 		withEmptyLinksClass: function () {
-			if(collection.links && collection.links.length < 1) collection.linksClass = "empty";
+			if(!c.links || !c.links.length)
+				c.linksClass = "empty";
 			return this;			
 		},
 				
-		output: collection
+		output: c
 	};
 }
 
-function assembled(src, owner, d) {
-	if (!src || typeof src === 'string')
+function assembled(src, owner, delimiters) {
+	if (!src || typeof src !== 'object')
 		throw 'No collection data to assemble.';	
 		
 	var level = owner ? owner + 1 : 1;
-	var delimiters = d || {
-		start : '[',
-		end : ']'
-	};
  			
-	return assemblyPipe(src)
+	return pipe(src)
 		.withSubcollectionsAssembledBy(this, level)
 		.withImages()
 		// for html templating  
 		.withLevel(level)
 		.withHtmlHeaders(level)
+		.withCollectionDelimiters(delimiters)
 		// for mustache
 		.withEmptyPropertiesIfUndefined()
 		.withEmptyLinksClass()
@@ -92,11 +110,11 @@ module.exports = {
 		return this;
 	},
 	
-	createAssemblyPipe: assemblyPipe,
+	pipe: pipe,
 			
 	assembledFromRootCollection: function (collection, url) {
 		var collectionWithNoId = this.assembled(collection); 
-		return assemblyPipe(collectionWithNoId)
+		return pipe(collectionWithNoId)
 			.withFetcherId(url)
 			.output;
 	},	

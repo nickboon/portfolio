@@ -3,7 +3,8 @@
 	"htmlHeader": "h1",
 	"htmlSubheader": "h2",
 	"id": "___test_json_collection_json",
-	"info": "",
+	"start": "[",
+	"end": "]",
 	"images": [
 		{
 			"url": "test/url",
@@ -30,11 +31,15 @@
 			"htmlSubheader": "h3",
 			"id": "___test_json_subcollection_json",
 			"info": "",
+			"start": "[",
+			"end": "]",
 			"subcollections": [
 				{
 					"title": "Collection 4",
 					"images": [],
 					"info": "Info about Collection 4",
+					"start": "[",
+					"end": "]",
 					"level": 3,
 					"links": [],
 					"linksClass": "empty",
@@ -52,6 +57,8 @@
 			"htmlSubheader": "h3",
 			"id": "___test_json_subcollection2_json",
 			"info": "",
+			"start": "[",
+			"end": "]",
 			"images": [
 				{
 					"url": "test/url",

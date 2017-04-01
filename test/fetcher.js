@@ -24,7 +24,7 @@ describe('fetcher', function() {
 	describe('.idAdded', function (object, id) {
 		it('should return a given object with an html5 css id selector added.', function () {
 			var expected = {id: 'valid_html5_css_id_selector'};
-			var actual = fetcher.idAdded({}, 'valid html5 css.id.selector');
+			var actual = fetcherFactory.idAdded({}, 'valid html5 css.id.selector');
 			should(actual).eql(expected);	
 		});
 	});

@@ -39,11 +39,11 @@ module.exports = {
 					if(!isJsonUrl) return object;
 					return fetchedObjectFrom(root + object, assembler, owner);
 				});
-			},
-			
-			idAdded: idAdded
+			}
 		};
-	}
+	},	
+				
+	idAdded: idAdded
 }; 
 
 

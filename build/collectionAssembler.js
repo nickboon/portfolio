@@ -1,5 +1,4 @@
-var fetcherIdAdded = require('./fetcher').idAdded;
-var fetcher;
+var id = 0; 
 var defaultDelimiters = {
 	start : '[',
 	end : ']'
@@ -14,47 +13,48 @@ var texts = [
 	"info"
 ];
 
-function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+function getId() {
+	id = id + 1;
+	return id;
 }
 
-function pipe(collection) {
+function initializeIfUndefinedString(stringProperty) {
+	if(!stringProperty) {
+		return '';
+	}
+	return stringProperty;
+}
+
+function initializeIfUndefinedArray(arrayProperty) {
+	if(!arrayProperty) {
+		return [];
+	}
+	return arrayProperty;
+}
+
+function pipe(collection, level) {
+	
 	var c = collection || {};
-		
-	return {	
-		withSubcollectionsAssembledBy: function  (ofCollections, level) {
-			if (c.subcollections) c.subcollections = fetcher
-				.fetchedList(ofCollections, level, c.subcollections);
-			return this;			
-		},
-		
-		withImages: function  () {
-			var ofImages = require('./imageAssembler.js');
-			if (c.images) c.images = fetcher
-				.fetchedList(ofImages, c.title, c.images);
-			return this;
-		},
-		
-		withFetcherId: function (url) {
-			if(!url || typeof url !== 'string' || !url.trim())
-				throw "You must supply an URL to generate a fetcherId.";
-			
-			c = fetcherIdAdded(c, url);
-			return this;
-		},
-			
-		withLevel: function (level) {
-			c.level = level;
-			return this;
-		},
-		
-		withHtmlHeaders: function  (level) {
-			if (!level || typeof level !== 'number')
-				throw 'No level suplied to withHtlHeaders.';
+	var l = level || 1;	
 				
-			if (level < 1) level = 1;
-			c.htmlHeader = 'h' + ((level > 6) ? 6 : level);
-			c.htmlSubheader = 'h' + ((level > 5) ? 6 : level + 1);
+	return {	
+		withImages: function  (process, fetcher) {
+			if (c.images) c.images = c.images.map(function (image) {					
+				return process(fetcher.fetchedIfJson(image), c.title);
+			}); 
+			return this;
+		},
+
+		withCssIdentifiers: function () {
+			c.cssIdentifier = getId();
+			return this;
+		},
+		
+		withHtmlHeaders: function  () {				
+			if (!l) l = 1;
+			if (l < 1) l = 1;
+			c.htmlHeader = 'h' + ((l > 6) ? 6 : l);
+			c.htmlSubheader = 'h' + ((l > 5) ? 6 : l + 1);
 			return this;
 		},
 		
@@ -65,7 +65,7 @@ function pipe(collection) {
 			return this;						
 		},
 		
-		withEmptyPropertiesIfUndefined: function () {
+		withUndefinedPropertiesInitialized: function () {
 			lists.forEach(function (list) {
 				if (!c[list]) c[list] = []; 
 			});
@@ -85,40 +85,28 @@ function pipe(collection) {
 	};
 }
 
-function assembled(src, owner, delimiters) {
-	if (!src || typeof src !== 'object')
-		throw 'No collection data to assemble.';	
-		
-	var level = owner ? owner + 1 : 1;
- 			
-	return pipe(src)
-		.withSubcollectionsAssembledBy(this, level)
-		.withImages()
-		// for html templating  
-		.withLevel(level)
-		.withHtmlHeaders(level)
-		.withCollectionDelimiters(delimiters)
-		// for mustache
-		.withEmptyPropertiesIfUndefined()
-		.withEmptyLinksClass()
-		.output;
-}
-
 module.exports = {
-	setFetcher: function (f) {
-		if (f) fetcher = f;
-		return this;
-	},
-	
 	pipe: pipe,
 			
-	assembledFromRootCollection: function (collection, url) {
-		var collectionWithNoId = this.assembled(collection); 
-		return pipe(collectionWithNoId)
-			.withFetcherId(url)
-			.output;
-	},	
-			
-	assembled: assembled
+	assemble:	function assemble(collection, process, fetcher, level) {
+		if (!collection) throw 'No collection supplied.';
+		if (!process) throw 'No processing call back supplied.';
+		if (!fetcher) throw 'No fetcher supplied.';
+		if (!level) level = 1;
+		if (level === 1) collection = process(collection, level);		
+		if(collection.subcollections) {
+			level = level + 1;
+			collection.subcollections = collection.subcollections
+			.map(function (subcollection) {
+				return assemble(
+					process(fetcher.fetchedIfJson(subcollection), level),
+					process,
+					fetcher,
+					level
+				);
+			});	
+		}
+		return collection;			
+	}
 };
 

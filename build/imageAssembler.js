@@ -1,6 +1,29 @@
-var captionAssembledFrom = require('./captionAssembler'); 
+//var captionAssembledFrom = require('./captionAssembler'); 
+function captionAssembledFrom(image) {
+	if(image === undefined) throw 'No image data supplied.';
+	
+	var info = [
+		(image.imageSet ? image.imageSet : '') +
+		(image.imageSet && image.title ? ': ' : '') + 
+		(image.title ? '<em>' + image.title + '</em>' : ''), 
+		image.medium,
+		image.dimensions, 
+		image.edition,
+		image.author,
+		image.date,
+		image.credit,
+		(image.link ? '<a href="' + image.link + '">' + image.link + '</a>' : '')
+	];
+	var joined = info.filter(function (item) {
+		return item; 
+	}).join(', ');
+	
+	if (!joined) return '';
+	else return joined[0].toUpperCase() + joined.slice(1) + '.';	
+};
 
-function assemblyPipe(image) {
+
+function pipe(image) {
 	return {
 		withImageSet: function (title) {
 			if (title) image.imageSet = title;
@@ -12,7 +35,7 @@ function assemblyPipe(image) {
 			return this;
 		},
 		
-		withEmptyThumbnailUrlToUrl: function () {
+		withUndefinedThumbnailUrlSetToUrl: function () {
 			image.thumbnailUrl = image.thumbnailUrl || image.url;
 			return this;
 		},
@@ -21,16 +44,6 @@ function assemblyPipe(image) {
 	};
 }
 
-function assembled(src, owner) {
-	if (!src || typeof src !== 'object') throw 'No image data to assemble.';
-	if (!src.url) throw 'Image has no URL.';
-	return assemblyPipe(src)
-		.withImageSet(owner)
-		.withCaption()
-		.withEmptyThumbnailUrlToUrl()
-		.output;	
-}
-
 module.exports = {
-	assembled: assembled
+	pipe: pipe
 };

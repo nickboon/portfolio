@@ -2,14 +2,13 @@
 	"title": "Collection 1",
 	"htmlHeader": "h1",
 	"htmlSubheader": "h2",
-	"id": "___test_json_collection_json",
+	"cssIdentifier": 1,
 	"start": "[",
 	"end": "]",
 	"images": [
 		{
 			"url": "test/url",
 			"thumbnailUrl": "test/url", 
-			"id": "___test_json___image_json",
 			"title": "Image 1",
 			"author": "Nick Boon",
 			"caption": "Collection 1: <em>Image 1</em>, Nick Boon.",
@@ -17,19 +16,17 @@
 		}
 	],
 	"info": "Info about Collection 1",
-	"level": 1,
 	"links": [],
 	"linksClass": "empty",
 	"subcollections": [
 		{
 			"title": "Collection 2",
 			"images": [],
-			"level": 2,
 			"links": [],
 			"linksClass": "empty",
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "___test_json_subcollection_json",
+			"cssIdentifier": 2,
 			"info": "",
 			"start": "[",
 			"end": "]",
@@ -40,13 +37,12 @@
 					"info": "Info about Collection 4",
 					"start": "[",
 					"end": "]",
-					"level": 3,
 					"links": [],
 					"linksClass": "empty",
 					"subcollections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
-					"id": "___test_json_subsubcollection_json"
+					"cssIdentifier": 3
 				}
 			]
 		},
@@ -55,7 +51,7 @@
 			"subcollections": [],
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"id": "___test_json_subcollection2_json",
+			"cssIdentifier": 4,
 			"info": "",
 			"start": "[",
 			"end": "]",
@@ -63,13 +59,11 @@
 				{
 					"url": "test/url",
 					"thumbnailUrl": "test/url", 
-					"id": "___test_json_image_json",
 					"title": "Image 1",
 					"author": "Nick Boon",
 					"caption": "<em>Image 1</em>, Nick Boon."
 				}
 			],
-			"level": 2,
 			"links": [],
 			"linksClass": "empty"
 		}		

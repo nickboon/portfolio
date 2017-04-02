@@ -1,23 +1,23 @@
 <div class="column indented">
 	<{{htmlHeader}}>
-		<span class="closed" id="{{& id}}">{{start}} {{title}} </span>
+		<span class="closed" id="{{& cssIdentifier}}">{{start}} {{title}} </span>
 	</{{htmlHeader}}>
-	<div class="{{& id}}_content indented js_closed">
+	<div class="{{& cssIdentifier}}_content indented js_closed">
 		{{>images}}
 		{{#info}}	
 		<{{htmlSubheader}}>
-			<span class="closed" id="{{& id}}_info">{{start}} Info </span>
+			<span class="closed" id="{{& cssIdentifier}}_info">{{start}} Info </span>
 		</{{htmlSubheader}}>
-		<div class="{{& id}}_info_content js_closed">
+		<div class="{{& cssIdentifier}}_info_content js_closed">
 			<div class="indented">{{{info}}}</div>
 			<{{htmlSubheader}}>{{end}}</{{htmlSubheader}}>
 		</div>				
 		{{/info}}
 		<div class="{{linksClass}}">
 			<{{htmlSubheader}}>
-				<span class="closed" id="{{& id}}_links">{{start}} Links </span>
+				<span class="closed" id="{{& cssIdentifier}}_links">{{start}} Links </span>
 			</{{htmlSubheader}}>
-			<div class="{{& id}}_links_content js_closed">
+			<div class="{{& cssIdentifier}}_links_content js_closed">
 				<div class="indented">
 					{{#links}}	
 					<a href="{{& .}}" class="clickable">{{& .}}</a>
@@ -33,4 +33,4 @@
 {{#subcollections}}{{>collection}}{{/subcollections}}
 </div>
 
-<{{htmlHeader}} class="{{& id}}_content column indented js_closed">{{end}}</{{htmlHeader}}>
+<{{htmlHeader}} class="{{& cssIdentifier}}_content column indented js_closed">{{end}}</{{htmlHeader}}>

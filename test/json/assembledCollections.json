@@ -2,7 +2,7 @@
 	"title": "Collection 1",
 	"htmlHeader": "h1",
 	"htmlSubheader": "h2",
-	"cssIdentifier": 1,
+	"cssIdentifier": "collection_1",
 	"start": "[",
 	"end": "]",
 	"images": [
@@ -26,7 +26,7 @@
 			"linksClass": "empty",
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"cssIdentifier": 2,
+			"cssIdentifier": "collection_2",
 			"info": "",
 			"start": "[",
 			"end": "]",
@@ -42,7 +42,7 @@
 					"subcollections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
-					"cssIdentifier": 3
+					"cssIdentifier": "collection_3"
 				}
 			]
 		},
@@ -51,7 +51,7 @@
 			"subcollections": [],
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
-			"cssIdentifier": 4,
+			"cssIdentifier": "collection_4",
 			"info": "",
 			"start": "[",
 			"end": "]",

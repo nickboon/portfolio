@@ -2,7 +2,7 @@ var assert = require('assert');
 var should = require('should');
 var collectionAssembler = require('../build/collectionAssembler');
 var imageAssembler = require('../build/imageAssembler');
-var fetcher = require('../build/simpleFetcher').create('../test/json/');	
+var fetcher = require('../build/fetcher').create('../test/json/');	
 var src = require('./json/collection.json');
 var expected = require('./json/assembledCollections.json');
 

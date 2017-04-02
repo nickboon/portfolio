@@ -46,7 +46,7 @@ function pipe(collection, level) {
 		},
 
 		withCssIdentifiers: function () {
-			c.cssIdentifier = getId();
+			c.cssIdentifier = 'collection_' + getId();
 			return this;
 		},
 		

@@ -1,54 +1,78 @@
-//~ var assert = require('assert');
-//~ var should = require('should');
-//~ var assembler = require('../build/imageAssembler.js');
-//~ 
-//~ describe('imageAssembler', function() {	
-	//~ describe('.assembled(src, owner)', function() {
-		//~ var knownUnassembledImage = {
-			//~ url: 'test/url',
-			//~ author: 'Nick Boon',
-			//~ title: 'Image 1',
-			//~ id: '___test_json_image_json'
-		//~ };      
-		//~ var knownAssembledImage = {
-			//~ url: 'test/url',
-			//~ thumbnailUrl: 'test/url', 
-			//~ author: 'Nick Boon',
-			//~ caption: '<em>Image 1</em>, Nick Boon.',
-			//~ title: 'Image 1',
-			//~ id: '___test_json_image_json'
-		//~ };      
-//~ 
-		//~ it('should throw with no argument supplied.', function() {						
-			//~ assert.throws(function () {
-				//~ assembler.assembled();
-			//~ });			
-			//~ 
-			//~ assert.throws(function () {
-				//~ assembler.assembled("boo");
-			//~ });
-		//~ });	
-				//~ 
-		//~ it('should throw if empty object supplied (needs at least a url).', function() {			
-			//~ assert.throws(function () {
-				//~ assembler.assembled({});
-			//~ });
-		//~ });
-		//~ 
-		//~ it('should return a correctly assembled image object.', function() {			
-			//~ var expected = knownAssembledImage;
-			//~ var actual = assembler.assembled(knownUnassembledImage);
-//~ 
-			//~ should(actual).eql(expected);
-		//~ });
-		//~ 
-		//~ it('should return an image object with an image set if owner suplied.', function() {			
-			//~ var owningColection = 'My Holidays';
-			//~ knownAssembledImage.imageSet = owningColection;
-			//~ knownAssembledImage.caption = 'My Holidays: <em>Image 1</em>, Nick Boon.';
-			//~ expected = knownAssembledImage;
-			//~ actual = assembler.assembled(knownUnassembledImage, owningColection);
-			//~ should(actual).eql(expected);
-		//~ });
-	//~ });
-//~ });
+var assert = require('assert');
+var should = require('should');
+var assembler = require('../build/imageAssembler.js');
+
+describe('imageAssembler', function() {
+	var expected;	
+	var actual;
+	
+	describe('.pipe(image)', function() {	
+		describe('.withImageSet(title)', function() {	
+			it('should add an imageSet value.', function() {
+				var title = "title";
+				expected = {imageSet: title};
+				actual = assembler.pipe({}).withImageSet(title).output;
+				should(actual).eql(expected);	
+			});
+		});
+		
+		describe('.withUndefinedThumbnailUrlSetToUrl()', function() {	
+			it('should set the thumbnailUrl value to the url value if not present.', function() {		
+				var url = "image/url.jpg";
+				expected = {url: url, thumbnailUrl: url};
+				actual = assembler.pipe({url: url})
+				.withUndefinedThumbnailUrlSetToUrl().output;
+				should(actual).eql(expected);	
+			});
+
+		});
+		
+		describe('.withCaption()', function() {
+			it('should throw with no argument supplied.', function() {						
+				assert.throws(function () {
+					assembler.pipe().withCaption();
+				});		
+			});
+							
+			it('should add a caption based on the image properties.', function() {
+			expected = '';
+			actual = assembler.pipe({}).withCaption().output.caption;		
+			assert.equal(actual, expected);			
+
+			expected = '2003.';
+			actual = assembler.pipe({
+				date: '2003'
+			}).withCaption().output.caption;			
+			assert.equal(actual, expected);			
+
+			expected = '<em>Working Title</em>, 2003.';
+			actual = assembler.pipe({
+				date: '2003',
+				title: 'Working Title'
+			}).withCaption().output.caption;			
+			assert.equal(actual, expected);			
+
+			expected = 'My Holidays: <em>Working Title</em>, 2003.';
+			actual = assembler.pipe({
+				date: '2003',
+				title: 'Working Title',
+				imageSet: 'My Holidays'
+			}).withCaption().output.caption;			
+			assert.equal(actual, expected);			
+
+			expected = 'My Holidays, w/p.';
+			actual = assembler.pipe({
+				edition: 'w/p',
+				imageSet: 'My Holidays'
+			}).withCaption().output.caption;			
+			assert.equal(actual, expected);			
+
+			expected = 'My Holidays.';
+			actual = assembler.pipe({
+				imageSet: 'My Holidays'
+			}).withCaption().output.caption;			
+			assert.equal(actual, expected);			
+			});
+		});
+	});
+});

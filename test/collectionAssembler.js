@@ -1,30 +1,21 @@
 var assert = require('assert');
 var should = require('should');
 var assembler = require('../build/collectionAssembler');
-var fetcher = require('../build/simpleFetcher').create('../test/json/');
-
-var initialzedEmpty = {
-	images: [],
-	subcollections: [],
-	links: [],
-	title: '',
-	info: ''
-};
-
-function freshPipe(collection, level) {
-	return assembler.pipe(collection, level);	
-}
+var imageAssembler = require('../build/imageAssembler');
+var fetcher = require('../build/fetcher').create('../test/json/');
 
 describe('collectionAssembler', function() {
 	describe('assemble(collection, process, fetcher, level)', function () {
   		it('should recusively add subcollection JSON.', function() {		
 			var actual = assembler.assemble(
 				{
-					subcollections: ['collectionWithSubcollection.json']
+					subcollections: [
+						'collectionWithSubcollection.json',
+						{title: 'Another Collection'}
+					]
 				},
 				function (collection) {
-					return freshPipe(collection)
-						.output;				
+					return assembler.pipe(collection).output;				
 				}, 
 				fetcher
 			); 
@@ -34,7 +25,8 @@ describe('collectionAssembler', function() {
 						subcollections: [
 							{}
 						]
-					}
+					},
+					{title: 'Another Collection'}
 				]
 			};
 			should(actual).eql(expected);
@@ -45,76 +37,123 @@ describe('collectionAssembler', function() {
 		var expected;
 		var actual;		
 		
-  		//~ it('.withImages(assembler, level) should add subcollection JSON.', function() {
-			//~ expected = {};
-			//~ actual = freshPipe()
-				//~ .withImages(assembler, 0).output;
-			//~ should(actual).eql(expected);
-//~ 
-			//~ expected = {
-				//~ "images": [
-					//~ {
-						//~ "caption": "",
-						//~ "id": "___test_json___minimalimage_json",
-						//~ "thumbnailUrl": "test/url",
-						//~ "url": "test/url"
-					//~ }
-				//~ ]
-			//~ };
-			//~ actual = freshPipe({
-				//~ images: ['./minimalimage.json']
-			//~ })
-				//~ .withImages(assembler, 0).output;
-			//~ should(actual).eql(expected);
-		//~ });						
-//~ 
-		//~ it('.withFetcherId(url) should add an ID from the given url.', function() {	
-			//~ assert.throws(function () {
-				//~ freshPipe().withFetcherId();
-			//~ });						
-//~ 
-			//~ expected = {id: 'path_to_json'};
-			//~ actual = freshPipe().withFetcherId('path.to.json').output;
-			//~ should(actual).eql(expected);
-		//~ });
-//~ 
-  		it('.withHtmlHeaders(level) should add html headers.', function() {
-			var level = -1;	
-			expected = {htmlHeader: 'h1', htmlSubheader: 'h2'};
-			actual = freshPipe({}, level).withHtmlHeaders().output;
-			should(actual).eql(expected);
+		describe('.withImages(process, fetcher)', function () {
+			it('.should add image JSON.', function() {
+				function process(image, imageSet) {
+					return imageAssembler.pipe(image)
+					.withImageSet(imageSet)
+					.withCaption()
+					.withUndefinedThumbnailUrlSetToUrl()
+					.output;
+				}
 
-			level = 7;	
-			expected = {htmlHeader: 'h6', htmlSubheader: 'h6'};
-			actual = freshPipe({}, level).withHtmlHeaders().output;
-			should(actual).eql(expected);
+				expected = {};
+				actual = assembler.pipe()
+				.withImages(process, fetcher).output;
+				should(actual).eql(expected);
+
+				expected = {
+					"images": [
+						{
+							"caption": "",
+							"thumbnailUrl": "test/url",
+							"url": "test/url"
+						}
+					]
+				};
+				actual = assembler.pipe({
+					images: ['./minimalimage.json']
+				}).withImages(process, fetcher).output;
+				should(actual).eql(expected);
+			});						
+		});
+		
+		describe('.withCssIdentifiers()', function () {
+			it('.should add a value that can be used as a CSS ID.', function() {
+				var firstCssId = assembler.pipe({})
+				.withCssIdentifiers().output.cssIdentifier;
+
+				var prefix = 'collection_';
+				assert(firstCssId.startsWith(prefix));
+				var suffix = firstCssId.replace(prefix, '');
+				assert.notEqual(parseInt(suffix), NaN);
+				
+				var secondCssId = assembler.pipe({})
+				.withCssIdentifiers().output.cssIdentifier;
+				
+				assert.notEqual(firstCssId, secondCssId);				
+			});						
 		});
 
-  		it('.withCollectionDelimiters(delimiters) should add delimiters', function() {
-			expected = {start: '[', end: ']'};
-			actual = freshPipe().withCollectionDelimiters().output;
-			should(actual).eql(expected);
+		describe('.withHtmlHeaders(level)', function () {
+			it('should add html headers.', function() {
+				var level = -1;	
+				expected = {htmlHeader: 'h1', htmlSubheader: 'h2'};
+				actual = assembler.pipe({}, level)
+				.withHtmlHeaders().output;
+				should(actual).eql(expected);
 
-			var delemeters = {start: '!', end: '!'};
-			expected = delemeters;
-			actual = freshPipe().withCollectionDelimiters(delemeters).output;
-			should(actual).eql(expected);
+				level = 7;	
+				expected = {htmlHeader: 'h6', htmlSubheader: 'h6'};
+				actual = assembler.pipe({}, level)
+				.withHtmlHeaders().output;
+				should(actual).eql(expected);
+			});
 		});
 
-  		//~ it('.withEmptyPropertiesIfUndefined() should add empty strings or arrays for each missing property', function() {
-			//~ expected = initialzedEmpty;
-			//~ actual = freshPipe().withEmptyPropertiesIfUndefined().output;
-			//~ should(actual).eql(expected);
-		//~ });
-//~ 
-		it('.withEmptyLinksClass(level) should add a linksClass property with a vaue of empty if there are no lnks.', function() {
-			expected = {linksClass: 'empty'};
-			actual = freshPipe().withEmptyLinksClass().output;
-			should(actual).eql(expected);
+		describe('.withCollectionDelimiters(delimiters)', function () {
+			var delemeters;
+			
+			it('should add delimiters', function() {
+				expected = {start: '[', end: ']'};
+				actual = assembler.pipe()
+				.withCollectionDelimiters().output;
+				should(actual).eql(expected);
 
-			expected = {links: ['www.link.com']};
-			actual = freshPipe(expected).withEmptyLinksClass().output;
-			should(actual).eql(expected);
+				delemeters = {start: '!', end: '!'};
+				expected = delemeters;
+				actual = assembler.pipe()
+				.withCollectionDelimiters(delemeters).output;
+				should(actual).eql(expected);
+			});
+
+			it('should allow for no delimeters', function() {
+				delemeters = {start: '', end: ''};
+				expected = delemeters;
+				actual = assembler.pipe()
+				.withCollectionDelimiters(delemeters).output;
+				should(actual).eql(expected);
+			});
+		});
+
+		describe('.withUndefinedPropertiesInitialized()', function () {
+			it('should add empty strings or arrays for each missing property', function() {
+				var initialzedEmpty = {
+					images: [],
+					subcollections: [],
+					links: [],
+					title: '',
+					info: ''
+				};
+
+				expected = initialzedEmpty;
+				actual = assembler.pipe()
+				.withUndefinedPropertiesInitialized().output;
+				should(actual).eql(expected);
+			});
+		});
+
+		describe('.withEmptyLinksClass(level)', function () {
+			it('should add a linksClass property with a vaue of empty if there are no lnks.', function() {
+				expected = {linksClass: 'empty'};
+				actual = assembler.pipe().withEmptyLinksClass().output;
+				should(actual).eql(expected);
+
+				expected = {links: ['www.link.com']};
+				actual = assembler.pipe(expected)
+				.withEmptyLinksClass().output;
+				should(actual).eql(expected);
+			});
 		});
 	});
 });

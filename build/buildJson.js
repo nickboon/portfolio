@@ -5,7 +5,7 @@ var pathSeperator = require('path').sep;
 var asssemblyRoot = srcPath.substr(0, srcPath.lastIndexOf(pathSeperator) + 1);
 var collectionAssembler = require('./collectionAssembler');
 var imageAssembler = require('./imageAssembler');
-var fetcher = require('./simpleFetcher').create(asssemblyRoot);	
+var fetcher = require('./fetcher').create(asssemblyRoot);	
 var src = require(srcPath);
 
 function write(path, content) {

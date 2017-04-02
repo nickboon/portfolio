@@ -1,5 +1,5 @@
 var copy = require('./copy');
-var addNormalizeCss = require('./normalizeCss');
+var addNormalizeCss = require('./addNormalizeCss');
 var addDependencies = require('./depMin');
 
 module.exports = exports = function () {

@@ -1,4 +1,3 @@
-//var captionAssembledFrom = require('./captionAssembler'); 
 function captionAssembledFrom(image) {
 	if(image === undefined) throw 'No image data supplied.';
 	
@@ -20,8 +19,7 @@ function captionAssembledFrom(image) {
 	
 	if (!joined) return '';
 	else return joined[0].toUpperCase() + joined.slice(1) + '.';	
-};
-
+}
 
 function pipe(image) {
 	return {

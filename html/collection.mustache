@@ -1,29 +1,37 @@
 <div class="column indented">
-	<{{htmlHeader}}>
-		<span class="closed" id="{{& cssIdentifier}}">{{start}} {{title}} </span>
-	</{{htmlHeader}}>
+	{{#htmlHeader}}<{{htmlHeader}}>{{/htmlHeader}}
+		<span class="closed" {{#cssIdentifier}}id="{{& cssIdentifier}}"{{/cssIdentifier}}>{{start}} {{title}} </span>
+	{{#htmlHeader}}</{{htmlHeader}}>{{/htmlHeader}}
 	<div class="{{& cssIdentifier}}_content indented js_closed">
 		{{>images}}
 		{{#info}}	
-		<{{htmlSubheader}}>
-			<span class="closed" id="{{& cssIdentifier}}_info">{{start}} Info </span>
-		</{{htmlSubheader}}>
+		{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
+			<span class="closed" {{#cssIdentifier}}id="{{& cssIdentifier}}_info"{{/cssIdentifier}}>
+				{{start}} Info 
+			</span>
+		{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 		<div class="{{& cssIdentifier}}_info_content js_closed">
 			<div class="indented">{{{info}}}</div>
-			<{{htmlSubheader}}>{{end}}</{{htmlSubheader}}>
+			{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
+					{{end}}
+			{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 		</div>				
 		{{/info}}
 		<div class="{{linksClass}}">
-			<{{htmlSubheader}}>
-				<span class="closed" id="{{& cssIdentifier}}_links">{{start}} Links </span>
-			</{{htmlSubheader}}>
+			{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
+				<span class="closed" {{#cssIdentifier}}id="{{& cssIdentifier}}_links"{{/cssIdentifier}}>
+					{{start}} Links 
+				</span>
+			{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 			<div class="{{& cssIdentifier}}_links_content js_closed">
 				<div class="indented">
 					{{#links}}	
 					<a href="{{& .}}" class="clickable">{{& .}}</a>
 					{{/links}}
 				</div>
-				<{{htmlSubheader}}>{{end}}</{{htmlSubheader}}>
+				{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
+						{{end}}
+				{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 			</div>				
 		</div>
 	</div>
@@ -33,4 +41,6 @@
 {{#subcollections}}{{>collection}}{{/subcollections}}
 </div>
 
-<{{htmlHeader}} class="{{& cssIdentifier}}_content column indented js_closed">{{end}}</{{htmlHeader}}>
+{{#htmlHeader}}<{{htmlHeader}} class="{{& cssIdentifier}}_content column indented js_closed">{{/htmlHeader}}
+	{{end}}
+{{#htmlHeader}}</{{htmlHeader}}>{{/htmlHeader}}

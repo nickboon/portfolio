@@ -24,10 +24,12 @@ function imageProcess(image, imageSet) {
 function collectionProcess(collection, level) {
 	return collectionAssembler.pipe(collection, level)
 	.withImages(imageProcess, fetcher)
+	// Used in html templating
 	.withCssIdentifiers()
 	.withHtmlHeaders()
-	.withUndefinedPropertiesInitialized()
 	.withCollectionDelimiters()
+	// Required for mustache js templating
+	.withUndefinedPropertiesInitialized()
 	.withEmptyLinksClass()
 	.output;				
 }

@@ -2,16 +2,17 @@ var copy = require('./copy');
 var deployOffline = require('./offline');
 var addDependencies = require('./depMin');
 var deployToWeb = require('./online');
-var argument = process.argv[2]; 
+var deployment = process.argv[2]; 
+var share = process.argv[3] || './';
 var testLabel = 'test';
 
-console.log('deploying to ' + argument + '...');
+console.log('deploying to ' + deployment + '...');
 copy('./js/portfolio.js', './dist/js/portfolio.js');
 copy('./css', './dist/css');
-copy('./fonts', './dist/fonts');
-copy('./swallow.gif', './dist/swallow.gif');
+copy(share + 'fonts', './dist/fonts');
+copy(share + 'images/swallow.gif', './dist/swallow.gif');
 
-switch (argument) {
+switch (deployment) {
 	case "offline":
 		deployOffline();
 		break;

@@ -9,7 +9,7 @@
     "test": "mocha",
     "lint:json:src": "jsonlint ./json/src.json -q",
     "lint": "jshint ./build/*.js ./deploy/*.js ./json/**/*.json",
-    "build:json": "node build/buildJson ../../Dropbox/json/src.json ./json/built/index.json",
+    "build:json": "node build/buildJson ../../Dropbox/nickboon/json/src.json ./json/built/index.json",
     "build:json:offline": "npm run prebuild:json && node ./build/buildJson.js ./json/offline/src.json ./json/built/index.json && npm run postbuild:json",
     "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
@@ -21,9 +21,9 @@
     "build": "npm run build:json && npm run build:html",
     "build:offline": "npm run build:json:offline && npm run build:html:offline",
     "deploy:clean": "rimraf ./dist/*",
-    "deploy:local": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate  && node deploy/deploy local && npm start",
-    "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && npm run beautify && node deploy/deploy offline && npm run start",
-    "deploy:test": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate && node deploy/deploy test && xdg-open https://nickboon.neocities.org/test"
+    "deploy:local": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate  && node deploy/deploy local ../../Dropbox/nickboon/ && npm start",
+    "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && npm run beautify && node deploy/deploy offline ../../Dropbox/nickboon/ && npm run start",
+    "deploy:test": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate && node deploy/deploy test ../../Dropbox/nickboon/ && xdg-open https://nickboon.neocities.org/test"
   },
   "repository": {
     "type": "git",

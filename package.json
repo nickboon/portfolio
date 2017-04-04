@@ -9,7 +9,7 @@
     "test": "mocha",
     "lint:json:src": "jsonlint ./json/src.json -q",
     "lint": "jshint ./build/*.js ./deploy/*.js ./json/**/*.json",
-    "build:json": "node build/buildJson ./json/src.json ./json/built/index.json",
+    "build:json": "node build/buildJson ../../Dropbox/json/src.json ./json/built/index.json",
     "build:json:offline": "npm run prebuild:json && node ./build/buildJson.js ./json/offline/src.json ./json/built/index.json && npm run postbuild:json",
     "build:json:clean": "rimraf ./json/built/index.json",
     "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",

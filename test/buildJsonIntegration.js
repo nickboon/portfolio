@@ -23,7 +23,6 @@ describe('Calling collectionAssembler.assemble with the appropriate processing p
 			.withHtmlHeaders()
 			.withUndefinedPropertiesInitialized()
 			.withCollectionDelimiters()
-			.withEmptyLinksClass()
 			.output;				
 		}
 

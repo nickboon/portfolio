@@ -1,11 +1,12 @@
-var pathToRoot = '../';
-var srcPath = pathToRoot + process.argv[2] || './src.json'; 
-var outPath = process.argv[3] || './index.json';
 var pathSeperator = require('path').sep;
+var pathToRoot = '..' + pathSeperator;
+var workingDirectoryPath = '.' + pathSeperator;
+var srcPath = pathToRoot + process.argv[2] || workingDirectoryPath + 'src.json'; 
+var outPath = process.argv[3] || workingDirectoryPath + 'index.json';
 var asssemblyRoot = srcPath.substr(0, srcPath.lastIndexOf(pathSeperator) + 1);
-var collectionAssembler = require('./collectionAssembler');
-var imageAssembler = require('./imageAssembler');
-var fetcher = require('./fetcher').create(asssemblyRoot);	
+var collectionAssembler = require(workingDirectoryPath + 'collectionAssembler');
+var imageAssembler = require(workingDirectoryPath + 'imageAssembler');
+var fetcher = require(workingDirectoryPath + 'fetcher').create(asssemblyRoot);	
 var src = require(srcPath);
 
 function write(path, content) {
@@ -30,7 +31,6 @@ function collectionProcess(collection, level) {
 	.withCollectionDelimiters()
 	// Required for mustache js templating
 	.withUndefinedPropertiesInitialized()
-	.withEmptyLinksClass()
 	.output;				
 }
 

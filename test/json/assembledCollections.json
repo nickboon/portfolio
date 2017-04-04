@@ -17,13 +17,11 @@
 	],
 	"info": "Info about Collection 1",
 	"links": [],
-	"linksClass": "empty",
 	"subcollections": [
 		{
 			"title": "Collection 2",
 			"images": [],
 			"links": [],
-			"linksClass": "empty",
 			"htmlHeader": "h2",
 			"htmlSubheader": "h3",
 			"cssIdentifier": "collection_2",
@@ -38,7 +36,6 @@
 					"start": "[",
 					"end": "]",
 					"links": [],
-					"linksClass": "empty",
 					"subcollections": [],
 					"htmlHeader": "h3",
 					"htmlSubheader": "h4",
@@ -64,8 +61,7 @@
 					"caption": "<em>Image 1</em>, Nick Boon."
 				}
 			],
-			"links": [],
-			"linksClass": "empty"
+			"links": []
 		}		
 	]
 }

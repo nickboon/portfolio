@@ -13,27 +13,27 @@
 		<div class="{{& cssIdentifier}}_info_content js_closed">
 			<div class="indented">{{{info}}}</div>
 			{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
-					{{end}}
+				{{end}}
 			{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 		</div>				
 		{{/info}}
-		<div class="{{linksClass}}">
+		{{#links.length}}
+		{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
+			<span class="closed" {{#cssIdentifier}}id="{{& cssIdentifier}}_links"{{/cssIdentifier}}>
+				{{start}} Links 
+			</span>
+		{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
+		<div class="{{& cssIdentifier}}_links_content js_closed">
+			<div class="indented">
+				{{#links}}	
+				<a href="{{& .}}" class="clickable">{{& .}}</a>
+				{{/links}}
+			</div>
 			{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
-				<span class="closed" {{#cssIdentifier}}id="{{& cssIdentifier}}_links"{{/cssIdentifier}}>
-					{{start}} Links 
-				</span>
+				{{end}}
 			{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
-			<div class="{{& cssIdentifier}}_links_content js_closed">
-				<div class="indented">
-					{{#links}}	
-					<a href="{{& .}}" class="clickable">{{& .}}</a>
-					{{/links}}
-				</div>
-				{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
-						{{end}}
-				{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
-			</div>				
 		</div>
+		{{/links.length}}				
 	</div>
 </div>
 

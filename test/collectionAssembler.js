@@ -142,18 +142,5 @@ describe('collectionAssembler', function() {
 				should(actual).eql(expected);
 			});
 		});
-
-		describe('.withEmptyLinksClass(level)', function () {
-			it('should add a linksClass property with a vaue of empty if there are no lnks.', function() {
-				expected = {linksClass: 'empty'};
-				actual = assembler.pipe().withEmptyLinksClass().output;
-				should(actual).eql(expected);
-
-				expected = {links: ['www.link.com']};
-				actual = assembler.pipe(expected)
-				.withEmptyLinksClass().output;
-				should(actual).eql(expected);
-			});
-		});
 	});
 });

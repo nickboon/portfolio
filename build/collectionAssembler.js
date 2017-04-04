@@ -75,12 +75,6 @@ function pipe(collection, level) {
 			return this;			
 		},
 				
-		withEmptyLinksClass: function () {
-			if(!c.links || !c.links.length)
-				c.linksClass = "empty";
-			return this;			
-		},
-				
 		output: c
 	};
 }

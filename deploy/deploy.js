@@ -9,6 +9,7 @@ var testLabel = 'test';
 console.log('deploying to ' + deployment + '...');
 copy('./js/portfolio.js', './dist/js/portfolio.js');
 copy('./css', './dist/css');
+copy('thumbnail', './dist/thumbnail');
 copy(share + 'fonts', './dist/fonts');
 copy(share + 'images/swallow.gif', './dist/swallow.gif');
 

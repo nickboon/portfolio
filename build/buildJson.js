@@ -1,12 +1,10 @@
 var fs = require('fs');
-var pathSeperator = require('path').sep;
-var workingDirectoryPath = '.' + pathSeperator;
-var srcPath = process.argv[2] || workingDirectoryPath + 'src.json'; 
-var outPath = process.argv[3] || workingDirectoryPath + 'index.json';
-var asssemblyRoot = srcPath.substr(0, srcPath.lastIndexOf(pathSeperator) + 1);
-var collectionAssembler = require(workingDirectoryPath + 'collectionAssembler');
-var imageAssembler = require(workingDirectoryPath + 'imageAssembler');
-var fetcher = require(workingDirectoryPath + 'fetcher').create(asssemblyRoot);	
+var srcPath = process.argv[2] || './src.json'; 
+var outPath = process.argv[3] || './index.json';
+var asssemblyRoot = srcPath.substr(0, srcPath.lastIndexOf("/") + 1);
+var collectionAssembler = require('./collectionAssembler');
+var imageAssembler = require('./imageAssembler');
+var fetcher = require('./fetcher').create(asssemblyRoot);	
 var src = require(srcPath);
 
 function write(path, content) {

@@ -1,68 +1,71 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "A visual artist's portfolio website",
-  "main": "index.js",
-  "scripts": {
-    "start": "lite-server -c config/bs-config.json",
-    "pretest": "jshint ./test/*.js",
-    "test": "mocha",
-    "lint:json:src": "jsonlint ~/Dropbox/nickboon/json/**/*.json -q",
-    "lint": "jshint ./build/*.js ./deploy/*.js ./json/**/*.json ~/Dropbox/nickboon/json/**/*.json",
-    "synch:pull": ".sh/pull.sh",
-    "synch:push": "./sh/push.sh",
-    "synch:thumbnails": "./sh/thumbnail.sh 100 && .sh/push/.sh",    
-    "build:json": "node build/buildJson ~/Dropbox/nickboon/json/src.json ./json/built/index.json",
-    "build:json:offline": "npm run prebuild:json && node build/buildJson.js ~/GitHub/portfolio/json/offline/src.json ./json/built/index.json && npm run postbuild:json",
-    "build:json:clean": "rimraf ./json/built/index.json",
-    "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
-    "postbuild:json": "jsonlint ./json/built/index.json -q",
-    "build:html": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index.mustache > dist/index.html",
-    "build:html:offline": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index_offline.mustache > dist/index.html",
-    "beautify": "js-beautify --html -f dist/index.html -o dist/index.html",
-    "validate": "html-validator --file=dist/index.html",
-    "build": "npm run build:json && npm run build:html",
-    "build:offline": "npm run build:json:offline && npm run build:html:offline",
-    "deploy:clean": "rimraf ./dist/*",
-    "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && npm run beautify && node deploy/deploy offline ~/Dropbox/nickboon/ && npm run start",
-    "predeploy": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate",
-    "deploy:local": "npm run predeploy && node deploy/deploy local ~/Dropbox/nickboon/ && npm start",
-    "deploy:test": "npm run predeploy && node deploy/deploy test .~/Dropbox/nickboon/ && xdg-open https://nickboon.neocities.org/test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nickboon/portfolio.git"
-  },                                                                   
-  "engine": {
-    "node": "~5.0.0",
-    "npm": "~3.3.6"
-  },
-  "keywords": [
-    "portfolio"
-  ],
-  "author": "Nick Boon",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nickboon/portfolio/issues"
-  },
-  "homepage": "https://github.com/nickboon/portfolio#readme",
-  "devDependencies": {
-    "html-validator-cli": "^3.1.0",
-    "js-beautify": "^1.6.8",
-    "jshint": "^2.9.4",
-    "jsonlint": "^1.6.2",
-    "lite-server": "^2.2.2",
-    "mocha": "^3.2.0",
-    "mustache": "^2.3.0",
-    "neocities": "0.0.3",
-    "readline-sync": "^1.4.7",
-    "rimraf": "^2.5.4",
-    "should": "^11.1.2"
-  },
-  "dependencies": {
-    "jquery": "1.12.4",
-    "lightbox2": "^2.9.0",
-    "masonry-layout": "^4.1.1",
-    "normalize.css": "5.0.0"
-  }
+    "name": "portfolio",
+    "version": "1.0.0",
+    "description": "A visual artist's portfolio website",
+    "main": "index.js",
+    "scripts": {
+        "start": "lite-server -c config/bs-config.json",
+        "pretest": "jshint ./test/*.js",
+        "test": "mocha",
+        "lint:json:src": "jsonlint ~/Dropbox/nickboon/json/**/*.json -q",
+        "lint": "jshint ./build/*.js ./deploy/*.js ./json/**/*.json ~/Dropbox/nickboon/json/**/*.json",
+        "synch:pull": ".sh/pull.sh",
+        "synch:push": "./sh/push.sh",
+        "synch:thumbnails": "./sh/thumbnail.sh 100 && .sh/push/.sh",
+        "build:json": "node build/buildJson ~/Dropbox/nickboon/json/src.json ./json/built/index.json",
+        "build:json:offline": "npm run prebuild:json && node build/buildJson.js ~/GitHub/portfolio/json/offline/src.json ./json/built/index.json && npm run postbuild:json",
+        "build:json:clean": "rimraf ./json/built/index.json",
+        "prebuild:json": "npm run lint && npm run lint:json:src && npm run build:json:clean",
+        "postbuild:json": "jsonlint ./json/built/index.json -q",
+        "build:html": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index.mustache > dist/index.html",
+        "build:html:offline": "mustache -p html/collection.mustache -p html/images.mustache -p html/image.mustache json/built/index.json html/index_offline.mustache > dist/index.html",
+        "beautify": "js-beautify --html -f dist/index.html -o dist/index.html",
+        "validate": "html-validator --file=dist/index.html",
+        "build": "npm run build:json && npm run build:html",
+        "build:offline": "npm run build:json:offline && npm run build:html:offline",
+        "deploy:clean": "rimraf ./dist/*",
+        "deploy:offline": "npm test && npm run deploy:clean && npm run build:offline && npm run beautify && node deploy/deploy offline ~/Dropbox/nickboon/ && npm run start",
+        "deploy:offline:windows": "windows\\deployOffline.cmd",
+        "predeploy": "npm test && npm run deploy:clean && npm run build && npm run beautify && npm run validate",
+        "deploy:local": "npm run predeploy && node deploy/deploy local ~/Dropbox/nickboon/ && npm start",
+        "deploy:local:windows": "windows\\deployLocal.cmd",
+        "deploy:test": "npm run predeploy && node deploy/deploy test .~/Dropbox/nickboon/ && xdg-open https://nickboon.neocities.org/test",
+        "deploy:test:windows": ".\\windows\\deployTest.cmd"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nickboon/portfolio.git"
+    },
+    "engine": {
+        "node": "~5.0.0",
+        "npm": "~3.3.6"
+    },
+    "keywords": [
+        "portfolio"
+    ],
+    "author": "Nick Boon",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/nickboon/portfolio/issues"
+    },
+    "homepage": "https://github.com/nickboon/portfolio#readme",
+    "devDependencies": {
+        "html-validator-cli": "^3.1.0",
+        "js-beautify": "^1.6.8",
+        "jshint": "^2.9.4",
+        "jsonlint": "^1.6.2",
+        "lite-server": "^2.2.2",
+        "mocha": "^3.2.0",
+        "mustache": "^2.3.0",
+        "neocities": "0.0.3",
+        "readline-sync": "^1.4.7",
+        "rimraf": "^2.5.4",
+        "should": "^11.1.2"
+    },
+    "dependencies": {
+        "jquery": "1.12.4",
+        "lightbox2": "^2.9.0",
+        "masonry-layout": "^4.1.1",
+        "normalize.css": "5.0.0"
+    }
 }

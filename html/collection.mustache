@@ -24,11 +24,11 @@
 			</span>
 		{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}
 		<div class="{{& cssIdentifier}}_links_content js_closed">
-			<div class="indented">
+			<ul class="indented">
 				{{#links}}	
-				<a href="{{& .}}" class="clickable">{{& .}}</a>
+				<li><a href="{{& .}}" class="clickable">{{& .}}</a></li>
 				{{/links}}
-			</div>
+			</ul>
 			{{#htmlSubheader}}<{{htmlSubheader}}>{{/htmlSubheader}}
 				{{end}}
 			{{#htmlSubheader}}</{{htmlSubheader}}>{{/htmlSubheader}}

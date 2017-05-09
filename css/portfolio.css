@@ -2,59 +2,81 @@
     font-family: LibreBaskerville-Regular;
     src: url(../fonts/LibreBaskerville-Regular.ttf);
 }
+
 @font-face {
     font-family: OpenSans-Regular;
     src: url(../fonts/OpenSans-Regular.ttf);
 }
 
 body {
-	font-family: OpenSans-Regular, arial, sans serif;
-	font-size: 16px;
-	width: 95%;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 2em;
-	background-color: #fff; 
+    font-family: OpenSans-Regular, arial, sans serif;
+    font-size: 16px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    background-color: #fff;
 }
 
-body, a {
-	color:#667;
+body,
+a {
+    color: #667;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: LibreBaskerville-Regular, arial, sans serif;
-	margin-bottom: 6px;	
-	margin-top: 6px;	
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: LibreBaskerville-Regular, arial, sans serif;
+    margin-bottom: 6px;
+    margin-top: 6px;
 }
 
 img {
-	width: 100px;
+    width: 100px;
+}
+
+p {
+    margin: 12px 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 12px 0;
+}
+
+li {
+    margin: 12px 0;
 }
 
 .indented {
-	padding-left: 50px;
+    padding-left: 50px;
 }
 
 .column {
-	float: left;
-	width: 320px;
-	overflow-wrap: break-word;
+    float: left;
+    width: 320px;
+    overflow-wrap: break-word;
 }
+
 .images {
-	margin-bottom: 10px;	
-	margin-top: 10px;	
-	font-size:0;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 0;
 }
 
 .clickable {
-	text-decoration: none; 
+    text-decoration: none;
 }
 
 .clickable:hover {
-	outline: 1px solid #667;
-	cursor: pointer;
-	z-index: 1000;}
+    outline: 1px solid #667;
+    cursor: pointer;
+    z-index: 1000;
+}
 
 .empty {
-	display: none;
+    display: none;
 }
